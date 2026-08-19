@@ -1,0 +1,9 @@
+<div class="site-subtitle">
+  Thomas Hegghammer's scratchpad on humanities and social science computing
+</div>
+<script>
+// Keep this site-level subtitle outside the feed's page-column layout.
+const subtitle = document.currentScript.previousElementSibling;
+document.querySelector("#quarto-header")?.after(subtitle);
+document.currentScript.remove();
+</script>

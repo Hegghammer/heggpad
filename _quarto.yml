@@ -1,0 +1,22 @@
+project:
+  type: website
+
+website:
+  description: "Thomas Hegghammer's scratchpad"
+  site-url: https://pad.hegghammer.net # you must change this appropriately for RSS feeds to work properly
+  title: "heggpad"
+  favicon: assets/icon.svg
+  navbar:
+    logo: assets/icon.svg
+    right:
+      - about.qmd
+      - icon: github
+        href: https://github.com/
+language:
+  listing-page-field-categories: "Tags"
+format:
+  html:
+    theme:
+      - cosmo
+      - brand
+    css: assets/styles.css

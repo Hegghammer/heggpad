@@ -1,0 +1,4 @@
+*.code-workspace
+/.quarto/
+/_site/
+**/*.quarto_ipynb

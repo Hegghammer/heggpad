@@ -1,0 +1,26 @@
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll(".quarto-listing-table .listing-categories").forEach((container) => {
+    const encodedCategories = container.closest("tr")?.dataset.categories;
+    if (!encodedCategories) return;
+
+    // Use Quarto's row metadata so each link matches its built-in category filter exactly.
+    const categories = decodeURIComponent(atob(encodedCategories)).split(",");
+    container.replaceChildren();
+
+    categories.forEach((category, index) => {
+      if (index > 0) container.append(", ");
+
+      const link = document.createElement("a");
+      link.className = "listing-category-link";
+      link.href = `#category=${encodeURIComponent(category)}`;
+      link.textContent = category;
+      link.addEventListener("click", (event) => {
+        event.preventDefault();
+        window.quartoListingCategory(btoa(encodeURIComponent(category)));
+      });
+      container.append(link);
+    });
+  });
+});
+</script>

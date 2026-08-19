@@ -1,0 +1,93 @@
+---
+title: "Getting set up with OpenCode and TensorX models"
+author: "Thomas Hegghammer"
+date: "2026-08-17"
+categories: [opencode, agents, llms]
+---
+
+I previously [described](/posts/a-reasonably-private-agentic-llm-stack/index.html) the tools I use for agentic LLM work. Here's how to do the initial setup.
+
+1. Go to [tensorx.ai](https://tensorx.ai/), sign up, and add $5 worth of credits on the account. Generate an API key and store it in a password manager.
+
+2. Open a terminal on your computer and install OpenCode with `curl -fsSL https://opencode.ai/install | bash`. If you are on Windows, use [Windows Subsystem for Linux](https://learn.microsoft.com/en-us/windows/wsl/) to do this.
+
+3.  In your terminal, create a persistent environment variable called `TENSORX_API_KEY` with your API key as the value. [Here](https://docs.digicert.com/en/digicert-keylocker/overview/secure-credentials/set-up-secure-credentials-for-macos/persistent-environment-variables-for-macos.html)'s how to do it on MacOS. On WSL/Linux it's the same except you store the variable in `~/.bash_profile` instead of in `~/.zprofile`. If your API key was `sk-abcdefghijkl1234567890`, the entry would look like this:
+
+```zsh
+export TENSORX_API_KEY=sk-abcdefghijkl1234567890
+```
+
+After saving the file, restart the terminal and test that the environment variable is registered, like so:
+
+```bash
+echo $TENSORX_API_KEY
+```
+
+It should output your key. If it doesn't, troubleshoot the environment variable creation by asking an LLM in the browser for help. 
+
+4. Create and open an OpenCode configuration file called `~/.config/opencode/opencode.jsonc` by running these commands: 
+
+```zsh
+mkdir -p ~/.config/opencode
+touch ~/.config/opencode/opencode.jsonc
+open ~/.config/opencode/opencode.jsonc
+```
+
+ 5. Populate the file with the following content. It is a minimal configuration that sets up OpenCode with one model from TensorX (GLM 5.2), just to get you off the ground. NB: if you are reading this at a future time when TensorX is no longer serving GLM 5.2, you will need to change the config to include a different model. An LLM in the browser will be able to help you with this.
+
+```json
+{
+  "$schema": "https://opencode.ai/config.json",
+  "provider": {
+    "tensorix": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Tensorix",
+      "options": {
+        "baseURL": "https://api.tensorix.ai/v1",
+        "apiKey": "{env:TENSORX_API_KEY}",
+        "setCacheKey": true
+      },
+      "models": {
+        "z-ai/glm-5.2": {
+          "name": "GLM-5.2",
+          "reasoning": true,
+          "attachment": true,
+          "options": {
+            "reasoning_effort": "max"
+          },
+          "cost": {
+            "input": 1.5,
+            "output": 4.5,
+            "cache_read": 0.38
+          }
+        }
+      }
+    }
+  },
+  "agent": {
+    "build": { "disable": true },
+    "plan": { "disable": true },
+    "glm5.2": {
+      "description": "GLM 5.2",
+      "model": "tensorix/z-ai/glm-5.2",
+      "mode": "primary"
+    }
+  }
+}
+```
+
+Save the file and return to the terminal.
+
+6. Start OpenCode with the command `opencode`. You should be good to go. 
+
+GLM 5.2 is powerful enough to safely manipulate OpenCode's configuration file by itself, so from here on you can just ask for what you want in plain language. For example, if you want to add another, more powerful model and be able to switch between them with the `TAB` key, just ask it something like:
+
+```
+Please add `moonshotai/kimi-k3` from TensorX to my OpenCode config 
+and create an agent entry for it.
+```
+
+There is [a lot](https://opencode.ai/docs/config/) you can tweak in OpenCode -- too much to cover here -- but I hope to mention my favourite tweaks in future posts. 
+
+If you are new to agentic systems, one of the first things you will want to do is start populating your `AGENTS.md` file, the general instructions that are passed to the model each time you start a new conversation. Just create a file by that name in the `~/.config/opencode/` folder and start adding stuff. Search online or ask an LLM for ideas on what to put in there.  BTW if you are coming from another agentic system and have an `AGENTS.md`/`CLAUDE.md` file already, just copy it to the `~/.config/opencode/` folder and OpenCode will pick it up.
+

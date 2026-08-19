@@ -1,0 +1,38 @@
+---
+title: "A reasonably private agentic LLM stack"
+author: "Thomas Hegghammer"
+date: "2026-08-15"
+categories: [llms, agents, opencode]
+---
+
+The big agentic coding apps such as Claude Code and Codex are powerful and convenient, but they can get expensive with heavy usage, and they are probably not ideal for processing sensitive data.[^1]
+
+An alternative way of using agents is to mix and match the components that make up an agentic system, namely, 1) the harness, 2) the model, and 3) the inference provision. In apps such as Claude Code and Codex, these elements are bundled, provided by the same company, and closed source. But you can break free from this mold and build a stack that does largely the same job for less money and with better privacy.
+
+Here is what I currently use:
+
+- Harness: **[OpenCode](https://opencode.ai)**
+- Inference provider: **[TensorX](https://tensorx.ai)**
+- Model: Whichever open-source model [leads the charts](https://artificialanalysis.ai/#intelligence-category-tabs) and suits the task. 
+
+*Why OpenCode?* Because it lets me plug in any model from any provider without sacrificing features. The user experience is practically identical to that of Claude Code and Codex, but I get much more flexibility from being able to choose whichever model and inference provider I want. There are other open-source apps of the same type, such as [Aider](https://aider.chat) and [Crush](https://github.com/charmbracelet/crush), but OpenCode has a much larger user base and is more actively maintained.
+
+*Why TensorX?* Because it offers the latest and best open source LLMs under privacy terms that are as good as they get in the industry. All inference on TensorX is GDPR-compliant, involves Zero Data Retention, and takes place in data centers on EU territory (Ireland and Finland). There are many providers that offer similarly good ranges of open source models (e.g., [Ollama Cloud](https://docs.ollama.com/cloud), [Fireworks AI](https://fireworks.ai)) and there are a few other European companies that offer similarly good privacy (e.g., [Scaleway](https://www.scaleway.com), [Infercom](https://infercom.ai)), but I have not found another company that has both. 
+
+*Why open-source models?* Because they have become very good, they cost a fraction of proprietary models, and they are available from privacy-conscious inference providers such as TensorX. To be sure, proprietary flagship models are always going to be slightly better than the best open source models, but at the moment the intelligence gap is [marginal](https://artificialanalysis.ai/#intelligence), and it is a difference you can probably only feel if you are working on an extremely complex task. In fact, even the best *open source* models (such as Kimi K3) are now overkill for most tasks, and I currently do most of my work with slightly less capable models like GLM 5.2 and Deepseek V4 Flash. 
+
+The price difference is huge; here are some example API prices (per million tokens out):
+
+- Claude Fable 5:         $ 50
+- GPT 5.6 Sol:               $ 45
+- Kimi K3:                      $ 15
+- GLM 5.2:                     $ 4.50
+- Deepseek V4 Flash:  $ 0.30
+
+The fact that the best open source models are Chinese-produced has no bearing on privacy, because models cannot call home (and we would easily spot it if they did). Model production and inference are two completely different processes, and once an open source model is released, it is untethered from the company that produced it. Almost all of the privacy risk in LLM use is concentrated in the inference provider, because it can, in principle, see and store the communication between you and the model. It is the company that *serves you* the model that you should be worried about, not the model itself.
+
+For maximum privacy you can of course skip the inference provider altogether and run an open source model locally, on your own infrastructure. With a framework like [Ollama](https://ollama.com) you can use local models in OpenCode just like you can any other model. The main challenge is hardware: unless you have a very beefy computer, you will be limited to models that are a lot less powerful than what a provider like TensorX can serve you. I happen to have access to a reasonably large GPU server (48GB VRAM), so I do use local models for some LLM jobs. However, for *agentic* coding tasks I have found the larger, cloud-based models substantially more performant. There is also a security dimension to this; weaker models are more vulnerable to prompt injection and such, so if you are going to have a model fetch things from the web (which you generally do in an agentic setting), a bigger model will generally be safer. 
+
+Setting up the OpenCode + TensorX stack does require some firing of terminal commands and editing of config files, so if you are very uncomfortable on the command line, this solution may not be for you. But if you don't mind a little bit of tinkering, it is worth trying out. I will describe the basic setup procedure in a separate post. 
+
+[^1]: Although storage times vary (the norm is 30 days), the big American LLM providers such as OpenAI and Anthropic do store all your LLM interactions. They generally do not train on your data, but their policies in this area are not absolute; Anthropic, for example, [retains the right](https://privacy.claude.com/en/articles/10023555-how-do-you-use-personal-data-in-model-training) to unilaterally train on your chats if they "are flagged for safety review".  Besides, all US companies are obliged under the [CLOUD Act](https://en.wikipedia.org/wiki/CLOUD_Act) to share stored user data with the US government if asked to do so, regardless of where in the world the data are physically stored.
