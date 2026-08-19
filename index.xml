@@ -1,0 +1,396 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss  xmlns:atom="http://www.w3.org/2005/Atom" 
+      xmlns:media="http://search.yahoo.com/mrss/" 
+      xmlns:content="http://purl.org/rss/1.0/modules/content/" 
+      xmlns:dc="http://purl.org/dc/elements/1.1/" 
+      version="2.0">
+<channel>
+<title>heggpad</title>
+<link>https://pad.hegghammer.net/</link>
+<atom:link href="https://pad.hegghammer.net/index.xml" rel="self" type="application/rss+xml"/>
+<description>Thomas Hegghammer&#39;s scratchpad</description>
+<generator>quarto-1.10.18</generator>
+<lastBuildDate>Mon, 17 Aug 2026 00:00:00 GMT</lastBuildDate>
+<item>
+  <title>Getting set up with OpenCode and TensorX models</title>
+  <dc:creator>Thomas Hegghammer</dc:creator>
+  <link>https://pad.hegghammer.net/posts/getting-set-up-with-opencode-and-tensorx-models/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p>I previously <a href="../../posts/a-reasonably-private-agentic-llm-stack/index.html">described</a> the tools I use for agentic LLM work. Here’s how to do the initial setup.</p>
+<ol type="1">
+<li><p>Go to <a href="https://tensorx.ai/">tensorx.ai</a>, sign up, and add $5 worth of credits on the account. Generate an API key and store it in a password manager.</p></li>
+<li><p>Open a terminal on your computer and install OpenCode with <code>curl -fsSL https://opencode.ai/install | bash</code>. If you are on Windows, use <a href="https://learn.microsoft.com/en-us/windows/wsl/">Windows Subsystem for Linux</a> to do this.</p></li>
+<li><p>In your terminal, create a persistent environment variable called <code>TENSORX_API_KEY</code> with your API key as the value. <a href="https://docs.digicert.com/en/digicert-keylocker/overview/secure-credentials/set-up-secure-credentials-for-macos/persistent-environment-variables-for-macos.html">Here</a>’s how to do it on MacOS. On WSL/Linux it’s the same except you store the variable in <code>~/.bash_profile</code> instead of in <code>~/.zprofile</code>. If your API key was <code>sk-abcdefghijkl1234567890</code>, the entry would look like this:</p></li>
+</ol>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode zsh code-with-copy"><code class="sourceCode zsh"><span id="cb1-1"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">export</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">TENSORX_API_KEY</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>sk-abcdefghijkl1234567890</span></code></pre></div></div>
+<p>After saving the file, restart the terminal and test that the environment variable is registered, like so:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">echo</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">$TENSORX_API_KEY</span></span></code></pre></div></div>
+<p>It should output your key. If it doesn’t, troubleshoot the environment variable creation by asking an LLM in the browser for help.</p>
+<ol start="4" type="1">
+<li>Create and open an OpenCode configuration file called <code>~/.config/opencode/opencode.jsonc</code> by running these commands:</li>
+</ol>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode zsh code-with-copy"><code class="sourceCode zsh"><span id="cb3-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mkdir</span> <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-p</span> ~/.config/opencode</span>
+<span id="cb3-2"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">touch</span> ~/.config/opencode/opencode.jsonc</span>
+<span id="cb3-3"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">open</span> ~/.config/opencode/opencode.jsonc</span></code></pre></div></div>
+<ol start="5" type="1">
+<li>Populate the file with the following content. It is a minimal configuration that sets up OpenCode with one model from TensorX (GLM 5.2), just to get you off the ground. NB: if you are reading this at a future time when TensorX is no longer serving GLM 5.2, you will need to change the config to include a different model. An LLM in the browser will be able to help you with this.</li>
+</ol>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb4-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">{</span></span>
+<span id="cb4-2">  <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">"$schema"</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">:</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"https://opencode.ai/config.json"</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">,</span></span>
+<span id="cb4-3">  <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">"provider"</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">:</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">{</span></span>
+<span id="cb4-4">    <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">"tensorix"</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">:</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">{</span></span>
+<span id="cb4-5">      <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">"npm"</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">:</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"@ai-sdk/openai-compatible"</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">,</span></span>
+<span id="cb4-6">      <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">"name"</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">:</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Tensorix"</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">,</span></span>
+<span id="cb4-7">      <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">"options"</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">:</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">{</span></span>
+<span id="cb4-8">        <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">"baseURL"</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">:</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"https://api.tensorix.ai/v1"</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">,</span></span>
+<span id="cb4-9">        <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">"apiKey"</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">:</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"{env:TENSORX_API_KEY}"</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">,</span></span>
+<span id="cb4-10">        <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">"setCacheKey"</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">:</span> <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">true</span></span>
+<span id="cb4-11">      <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">},</span></span>
+<span id="cb4-12">      <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">"models"</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">:</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">{</span></span>
+<span id="cb4-13">        <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">"z-ai/glm-5.2"</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">:</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">{</span></span>
+<span id="cb4-14">          <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">"name"</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">:</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"GLM-5.2"</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">,</span></span>
+<span id="cb4-15">          <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">"reasoning"</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">:</span> <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">true</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">,</span></span>
+<span id="cb4-16">          <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">"attachment"</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">:</span> <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">true</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">,</span></span>
+<span id="cb4-17">          <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">"options"</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">:</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">{</span></span>
+<span id="cb4-18">            <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">"reasoning_effort"</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">:</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"max"</span></span>
+<span id="cb4-19">          <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">},</span></span>
+<span id="cb4-20">          <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">"cost"</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">:</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">{</span></span>
+<span id="cb4-21">            <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">"input"</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">:</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1.5</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">,</span></span>
+<span id="cb4-22">            <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">"output"</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">:</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">4.5</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">,</span></span>
+<span id="cb4-23">            <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">"cache_read"</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">:</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.38</span></span>
+<span id="cb4-24">          <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">}</span></span>
+<span id="cb4-25">        <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">}</span></span>
+<span id="cb4-26">      <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">}</span></span>
+<span id="cb4-27">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">}</span></span>
+<span id="cb4-28">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">},</span></span>
+<span id="cb4-29">  <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">"agent"</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">:</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">{</span></span>
+<span id="cb4-30">    <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">"build"</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">:</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">{</span> <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">"disable"</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">:</span> <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">true</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">},</span></span>
+<span id="cb4-31">    <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">"plan"</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">:</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">{</span> <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">"disable"</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">:</span> <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">true</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">},</span></span>
+<span id="cb4-32">    <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">"glm5.2"</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">:</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">{</span></span>
+<span id="cb4-33">      <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">"description"</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">:</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"GLM 5.2"</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">,</span></span>
+<span id="cb4-34">      <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">"model"</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">:</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"tensorix/z-ai/glm-5.2"</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">,</span></span>
+<span id="cb4-35">      <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">"mode"</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">:</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"primary"</span></span>
+<span id="cb4-36">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">}</span></span>
+<span id="cb4-37">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">}</span></span>
+<span id="cb4-38"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">}</span></span></code></pre></div></div>
+<p>Save the file and return to the terminal.</p>
+<ol start="6" type="1">
+<li>Start OpenCode with the command <code>opencode</code>. You should be good to go.</li>
+</ol>
+<p>GLM 5.2 is powerful enough to safely manipulate OpenCode’s configuration file by itself, so from here on you can just ask for what you want in plain language. For example, if you want to add another, more powerful model and be able to switch between them with the <code>TAB</code> key, just ask it something like:</p>
+<pre><code>Please add `moonshotai/kimi-k3` from TensorX to my OpenCode config 
+and create an agent entry for it.</code></pre>
+<p>There is <a href="https://opencode.ai/docs/config/">a lot</a> you can tweak in OpenCode – too much to cover here – but I hope to mention my favourite tweaks in future posts.</p>
+<p>If you are new to agentic systems, one of the first things you will want to do is start populating your <code>AGENTS.md</code> file, the general instructions that are passed to the model each time you start a new conversation. Just create a file by that name in the <code>~/.config/opencode/</code> folder and start adding stuff. Search online or ask an LLM for ideas on what to put in there. BTW if you are coming from another agentic system and have an <code>AGENTS.md</code>/<code>CLAUDE.md</code> file already, just copy it to the <code>~/.config/opencode/</code> folder and OpenCode will pick it up.</p>
+
+
+
+ ]]></description>
+  <category>opencode</category>
+  <category>agents</category>
+  <category>llms</category>
+  <guid>https://pad.hegghammer.net/posts/getting-set-up-with-opencode-and-tensorx-models/</guid>
+  <pubDate>Mon, 17 Aug 2026 00:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>A reasonably private agentic LLM stack</title>
+  <dc:creator>Thomas Hegghammer</dc:creator>
+  <link>https://pad.hegghammer.net/posts/a-reasonably-private-agentic-llm-stack/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p>The big agentic coding apps such as Claude Code and Codex are powerful and convenient, but they can get expensive with heavy usage, and they are probably not ideal for processing sensitive data.<sup>1</sup></p>
+<p>An alternative way of using agents is to mix and match the components that make up an agentic system, namely, 1) the harness, 2) the model, and 3) the inference provision. In apps such as Claude Code and Codex, these elements are bundled, provided by the same company, and closed source. But you can break free from this mold and build a stack that does largely the same job for less money and with better privacy.</p>
+<p>Here is what I currently use:</p>
+<ul>
+<li>Harness: <strong><a href="https://opencode.ai">OpenCode</a></strong></li>
+<li>Inference provider: <strong><a href="https://tensorx.ai">TensorX</a></strong></li>
+<li>Model: Whichever open-source model <a href="https://artificialanalysis.ai/#intelligence-category-tabs">leads the charts</a> and suits the task.</li>
+</ul>
+<p><em>Why OpenCode?</em> Because it lets me plug in any model from any provider without sacrificing features. The user experience is practically identical to that of Claude Code and Codex, but I get much more flexibility from being able to choose whichever model and inference provider I want. There are other open-source apps of the same type, such as <a href="https://aider.chat">Aider</a> and <a href="https://github.com/charmbracelet/crush">Crush</a>, but OpenCode has a much larger user base and is more actively maintained.</p>
+<p><em>Why TensorX?</em> Because it offers the latest and best open source LLMs under privacy terms that are as good as they get in the industry. All inference on TensorX is GDPR-compliant, involves Zero Data Retention, and takes place in data centers on EU territory (Ireland and Finland). There are many providers that offer similarly good ranges of open source models (e.g., <a href="https://docs.ollama.com/cloud">Ollama Cloud</a>, <a href="https://fireworks.ai">Fireworks AI</a>) and there are a few other European companies that offer similarly good privacy (e.g., <a href="https://www.scaleway.com">Scaleway</a>, <a href="https://infercom.ai">Infercom</a>), but I have not found another company that has both.</p>
+<p><em>Why open-source models?</em> Because they have become very good, they cost a fraction of proprietary models, and they are available from privacy-conscious inference providers such as TensorX. To be sure, proprietary flagship models are always going to be slightly better than the best open source models, but at the moment the intelligence gap is <a href="https://artificialanalysis.ai/#intelligence">marginal</a>, and it is a difference you can probably only feel if you are working on an extremely complex task. In fact, even the best <em>open source</em> models (such as Kimi K3) are now overkill for most tasks, and I currently do most of my work with slightly less capable models like GLM 5.2 and Deepseek V4 Flash.</p>
+<p>The price difference is huge; here are some example API prices (per million tokens out):</p>
+<ul>
+<li>Claude Fable 5: $ 50</li>
+<li>GPT 5.6 Sol: $ 45</li>
+<li>Kimi K3: $ 15</li>
+<li>GLM 5.2: $ 4.50</li>
+<li>Deepseek V4 Flash: $ 0.30</li>
+</ul>
+<p>The fact that the best open source models are Chinese-produced has no bearing on privacy, because models cannot call home (and we would easily spot it if they did). Model production and inference are two completely different processes, and once an open source model is released, it is untethered from the company that produced it. Almost all of the privacy risk in LLM use is concentrated in the inference provider, because it can, in principle, see and store the communication between you and the model. It is the company that <em>serves you</em> the model that you should be worried about, not the model itself.</p>
+<p>For maximum privacy you can of course skip the inference provider altogether and run an open source model locally, on your own infrastructure. With a framework like <a href="https://ollama.com">Ollama</a> you can use local models in OpenCode just like you can any other model. The main challenge is hardware: unless you have a very beefy computer, you will be limited to models that are a lot less powerful than what a provider like TensorX can serve you. I happen to have access to a reasonably large GPU server (48GB VRAM), so I do use local models for some LLM jobs. However, for <em>agentic</em> coding tasks I have found the larger, cloud-based models substantially more performant. There is also a security dimension to this; weaker models are more vulnerable to prompt injection and such, so if you are going to have a model fetch things from the web (which you generally do in an agentic setting), a bigger model will generally be safer.</p>
+<p>Setting up the OpenCode + TensorX stack does require some firing of terminal commands and editing of config files, so if you are very uncomfortable on the command line, this solution may not be for you. But if you don’t mind a little bit of tinkering, it is worth trying out. I will describe the basic setup procedure in a separate post.</p>
+
+
+
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>Although storage times vary (the norm is 30 days), the big American LLM providers such as OpenAI and Anthropic do store all your LLM interactions. They generally do not train on your data, but their policies in this area are not absolute; Anthropic, for example, <a href="https://privacy.claude.com/en/articles/10023555-how-do-you-use-personal-data-in-model-training">retains the right</a> to unilaterally train on your chats if they “are flagged for safety review”. Besides, all US companies are obliged under the <a href="https://en.wikipedia.org/wiki/CLOUD_Act">CLOUD Act</a> to share stored user data with the US government if asked to do so, regardless of where in the world the data are physically stored.↩︎</p></li>
+</ol>
+</section></div> ]]></description>
+  <category>llms</category>
+  <category>agents</category>
+  <category>opencode</category>
+  <guid>https://pad.hegghammer.net/posts/a-reasonably-private-agentic-llm-stack/</guid>
+  <pubDate>Sat, 15 Aug 2026 00:00:00 GMT</pubDate>
+</item>
+</channel>
+</rss>
