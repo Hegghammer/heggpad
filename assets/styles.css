@@ -8,18 +8,25 @@
   color: #000;
 }
 
-/* Keep the licence notice visible without covering the end of the page. */
+/* Keep the licence notice in normal document flow. */
 .nav-footer {
-  position: fixed;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 1000;
   background-color: var(--bs-body-bg);
 }
 
+/* Push the footer down on short pages without fixing it over long pages. */
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
 #quarto-content {
-  padding-bottom: 3rem;
+  flex: 1 0 auto;
+  width: 100%;
+}
+
+footer.footer {
+  flex-shrink: 0;
 }
 
 .site-subtitle {
@@ -108,6 +115,15 @@
 }
 
 @media (max-width: 767.98px) {
+  /* Keep the licence notice compact on small screens. */
+  .nav-footer {
+    padding: 0.25rem 1rem;
+  }
+
+  .nav-footer-center {
+    padding: 0;
+  }
+
   /* Give the title a usable column and let categories wrap below it. */
   .quarto-listing-table.table > tbody > tr {
     display: grid;
