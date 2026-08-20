@@ -6,8 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Thomas Hegghammer">
+<meta name="dcterms.date" content="2026-08-20">
 
-<title>heggpad</title>
+<title>My emerging LLM workflow – heggpad</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -29,26 +31,24 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./assets/icon.svg" rel="icon" type="image/svg+xml">
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-e3adbaa939bcd423dddc8c8a834270b4.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../assets/icon.svg" rel="icon" type="image/svg+xml">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-e3adbaa939bcd423dddc8c8a834270b4.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -76,81 +76,23 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
 
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
 
-    const options = {
-      valueNames: ['listing-date','listing-title','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author"],
-    };
+<link rel="stylesheet" href="../../assets/styles.css">
+</head>
 
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
-
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
-
-<link rel="stylesheet" href="assets/styles.css">
-<link rel="alternate" type="application/rss+xml" title="heggpad" href="index.xml" data-external="1"></head>
-
-<body class="nav-fixed quarto-light">
+<body class="nav-fixed fullcontent quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top quarto-banner">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="./index.html" class="navbar-brand navbar-brand-logo">
-    <img src="./assets/icon.svg" alt="" class="navbar-logo light-content">
-    <img src="./assets/icon.svg" alt="" class="navbar-logo dark-content">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../assets/icon.svg" alt="" class="navbar-logo light-content">
+    <img src="../../assets/icon.svg" alt="" class="navbar-logo dark-content">
     </a>
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">heggpad</span>
     </a>
   </div>
@@ -161,7 +103,7 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./about.html"> 
+    <a class="nav-link" href="../../about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item compact">
@@ -177,121 +119,63 @@ window.Quarto = {
     </nav>
 </header>
 <!-- content -->
-<header id="title-block-header" class="quarto-title-block"></header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">My emerging LLM workflow</h1>
+                                <div class="quarto-categories">
+                <div class="quarto-category">llms</div>
+                <div class="quarto-category">agents</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Thomas Hegghammer </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">August 20, 2026</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
-    <h5 class="quarto-listing-category-title">Tags</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(3)</span></div><div class="category" data-category="YWdlbnRz">agents <span class="quarto-category-count">(3)</span></div><div class="category" data-category="bGxtcw==">llms <span class="quarto-category-count">(3)</span></div><div class="category" data-category="b3BlbmNvZGU=">opencode <span class="quarto-category-count">(2)</span></div></div></div>
+    
 <!-- main -->
-<main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
-<div class="site-subtitle">
-  Thomas Hegghammer's scratchpad on humanities and social science computing
-</div>
-<script>
-// Keep this site-level subtitle outside the feed's page-column layout.
-const subtitle = document.currentScript.previousElementSibling;
-document.querySelector("#quarto-header")?.after(subtitle);
-document.currentScript.remove();
-</script>
+<main class="content quarto-banner-title-block" id="quarto-document-content">
 
 
 
 
 
+<p>When I tell other academics that I spend a lot of time with large language models, people often ask me what exactly I use them for. This is difficult to answer briefly, because I have explored many different things and am not yet settled in my habits. I have essentially been throwing lots of things at the wall to see what sticks, and it is only recently that I’ve started to see patterns in what I actually find useful.</p>
+<p>Getting to this stage has taken a lot of experimentation. I have tried the products from the big labs as well as indie options from the open source community. I have worked with flagship models, explored frontline open source models, and tested the limits of locally deployed ones. I have finetuned LLMs, set up RAG systems, and tried a range of different memory solutions. Like others in the tech rabbithole, I have been chasing news of the latest models and tools, in the vain hope that the ultimate solution is just one deployment away. Most trials have been duds, but in recent months I’ve noticed my actual LLM usage cluster around four main categories of use cases, each involving a different tool.</p>
+<ol type="1">
+<li><p><strong>General queries</strong>. This is when I have a quick question or problem that does not require much background information, for instance, “how do I do X” or “what is the state of affairs on Y”. For this I simply use an LLM in the browser, currently Claude.ai. I also come here to check in on the capabilities of the flagship models or to throw a particularly difficult problem at them. For privacy I turn off memory accumulation and keep only the conversations I really need.</p></li>
+<li><p><strong>Personal queries</strong>. This is when I have a question that is best answered by a model that knows things about me, such as my preferences, projects, location, family situation, or hardware stack. For this I use an OpenClaw bot that I talk to via Matrix either on my PC or my mobile. The bot accumulates information about me from our conversations and is therefore able to provide fairly tailored advice without me having to input a ton of contextual information every time. I don’t mind the accumulation since I self-host the bot and the matrix server and trust the inference provider.</p></li>
+<li><p><strong>Filesystem work</strong>. This is when I have a task that requires the LLM to have direct access to the files on my computer. For this I use OpenCode (see <a href="../../posts/a-reasonably-private-agentic-llm-stack/index.html">related post</a>) in the terminal. Most of my AI use happens here, and it has become a central part of my daily workflow. I use it for a lot of different things, mostly in the domain of research assistance and computer maintenance. I will have project-focused or thematic folders, and in the root of each I will have a project-specific <code>AGENTS.md</code> file as well as a <code>MEMORY.md</code> file for record-keeping. When I then launch OpenCode in that folder, I get an agent that has both a sense of what the project is about and what was done there in the past. For a research project I might ask for help with things like vetting a bibliography, scraping websites, drafting code for visualisations, curating my Zotero collection, or translating texts in languages I don’t read. On the computer maintenance side I might ask for help modifying some configuration, setting up a new service, or troubleshooting. I self-host a lot of services so I probably have a higher-than-average need for this, but tech stack management is probably the one area where AI has been truly transformational for me; it’s taken away all the friction and I can do much more complicated things than before.</p></li>
+<li><p><strong>Scripted processing</strong>. This is when I need to use an LLM to process or generate data in a controlled and reproducible way, typically for research. In practice this means writing R or Python code in a text editor (VSCodium in my case) to query an LLM via API. For instance, in a recent project on city names in a historical Arabic newspaper corpus, we needed a way to weed out false positives from a list of tens of thousands of apparent city names. We wrote code to pass all the passages to an LLM that would make a judgement based on the context in which the word was used. Scripting the procedure and outputting structured data gave us more control than we would have had by simply prompting an agent. Of course, you can combine agents and scripts, and I increasingly use agents to draft scripts to query other LLMs.</p></li>
+</ol>
+<p>Meanwhile, there are many things I <em>don’t</em> use LLMs for. I never ask them to write text for me, however little, because I suspect it is a slippery slope that passes through sloppiness and ends in plagiarism. (I will, however, ask for help with formatting, proofreading, and analytical feedback.) I also haven’t ventured into AI for email management, because I don’t quite trust models to make good triaging decisions, much less draft authentic-looking responses. This is an area where I do want to keep a hand on the wheel, even if it means slower response times. Another no-go area is high-stakes procedures like managing backups on my NAS. Here I still use handwritten scripts, because the consequences of an LLM misunderstanding something would be catastrophic.</p>
+<p>I also do not think AI yet amounts to a productivity revolution as far as academic research is concerned. Unless you are willing to outsource your writing to an LLM, there is no substitute for the slow work of reading books and the painful process of putting words on a page. To be perfectly honest, the net effect of all my experimentation and tinkering has probably been negative as far as traditional research output is concerned, at least thus far. I can also feel the effects that the cognitive offloading has on things like my coding skills. At the same time, LLMs have helped me solve technical problems that I had struggled with for years, and they have helped me take on more ambitious research questions and data collection tasks. But most importantly I have enjoyed the process; I have gotten a thrill from learning new things, and that counts for a lot.</p>
 
 
 
-<div class="quarto-listing quarto-listing-container-table" id="listing-listing">
-<table class="quarto-listing-table table">
-<thead>
-<tr>
-
-<th>
-Date
-</th>
-
-<th>
-Title
-</th>
-
-<th>
-Tags
-</th>
-
-</tr>
-</thead>
-<tbody class="list">
-
-<tr data-index="0" data-categories="bGxtcyUyQ2FnZW50cw==" data-listing-date-sort="1787184000000" data-listing-file-modified-sort="1787232986254" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1048" data-listing-title-sort="My emerging LLM workflow" data-listing-filename-sort="index.qmd">
-<td>
-<span class="listing-date">2026-08-20</span>
-</td>
-<td>
-<a href="./posts/my-emerging-llm-workflow/index.html" class="title listing-title">My emerging LLM workflow</a>
-</td>
-<td>
-<span class="listing-categories">llms, agents</span>
-</td>
-
-</tr>
-
-<tr data-index="1" data-categories="b3BlbmNvZGUlMkNhZ2VudHMlMkNsbG1z" data-listing-date-sort="1786924800000" data-listing-file-modified-sort="1787232986254" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="748" data-listing-title-sort="Getting set up with OpenCode and TensorX models" data-listing-filename-sort="index.qmd">
-<td>
-<span class="listing-date">2026-08-17</span>
-</td>
-<td>
-<a href="./posts/getting-set-up-with-opencode-and-tensorx-models/index.html" class="title listing-title">Getting set up with OpenCode and TensorX models</a>
-</td>
-<td>
-<span class="listing-categories">opencode, agents, llms</span>
-</td>
-
-</tr>
-
-<tr data-index="2" data-categories="bGxtcyUyQ2FnZW50cyUyQ29wZW5jb2Rl" data-listing-date-sort="1786752000000" data-listing-file-modified-sort="1787232986254" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="929" data-listing-title-sort="A reasonably private agentic LLM stack" data-listing-filename-sort="index.qmd">
-<td>
-<span class="listing-date">2026-08-15</span>
-</td>
-<td>
-<a href="./posts/a-reasonably-private-agentic-llm-stack/index.html" class="title listing-title">A reasonably private agentic LLM stack</a>
-</td>
-<td>
-<span class="listing-categories">llms, agents, opencode</span>
-</td>
-
-</tr>
-
-</tbody>
-</table>
-<div class="listing-no-matching d-none">No matching items</div>
-</div></main> <!-- /main -->
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-  document.querySelectorAll(".quarto-listing-table .listing-categories").forEach((container) => {
-    const encodedCategories = container.closest("tr")?.dataset.categories;
-    if (!encodedCategories) return;
-
-    // Use Quarto's row metadata so each link matches its built-in category filter exactly.
-    const categories = decodeURIComponent(atob(encodedCategories)).split(",");
-    container.replaceChildren();
-
-    categories.forEach((category, index) => {
-      if (index > 0) container.append(", ");
-
-      const link = document.createElement("a");
-      link.className = "listing-category-link";
-      link.href = `#category=${encodeURIComponent(category)}`;
-      link.textContent = category;
-      link.addEventListener("click", (event) => {
-        event.preventDefault();
-        window.quartoListingCategory(btoa(encodeURIComponent(category)));
-      });
-      container.append(link);
-    });
-  });
-});
-</script>
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";

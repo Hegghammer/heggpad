@@ -2,18 +2,22 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://pad.hegghammer.net/index.html</loc>
-    <lastmod>2026-08-20T09:56:45.291Z</lastmod>
+    <lastmod>2026-08-20T13:36:26.254Z</lastmod>
   </url>
   <url>
-    <loc>https://pad.hegghammer.net/posts/getting-set-up-with-opencode-and-tensorx-models/index.html</loc>
-    <lastmod>2026-08-20T09:56:45.291Z</lastmod>
+    <loc>https://pad.hegghammer.net/posts/my-emerging-llm-workflow/index.html</loc>
+    <lastmod>2026-08-20T13:36:26.254Z</lastmod>
   </url>
   <url>
     <loc>https://pad.hegghammer.net/posts/a-reasonably-private-agentic-llm-stack/index.html</loc>
-    <lastmod>2026-08-20T09:56:45.291Z</lastmod>
+    <lastmod>2026-08-20T13:36:26.254Z</lastmod>
+  </url>
+  <url>
+    <loc>https://pad.hegghammer.net/posts/getting-set-up-with-opencode-and-tensorx-models/index.html</loc>
+    <lastmod>2026-08-20T13:36:26.254Z</lastmod>
   </url>
   <url>
     <loc>https://pad.hegghammer.net/about.html</loc>
-    <lastmod>2026-08-20T09:56:45.290Z</lastmod>
+    <lastmod>2026-08-20T13:36:26.253Z</lastmod>
   </url>
 </urlset>

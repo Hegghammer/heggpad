@@ -10,7 +10,36 @@
 <atom:link href="https://pad.hegghammer.net/index.xml" rel="self" type="application/rss+xml"/>
 <description>Thomas Hegghammer&#39;s scratchpad</description>
 <generator>quarto-1.10.18</generator>
-<lastBuildDate>Mon, 17 Aug 2026 00:00:00 GMT</lastBuildDate>
+<lastBuildDate>Thu, 20 Aug 2026 00:00:00 GMT</lastBuildDate>
+<item>
+  <title>My emerging LLM workflow</title>
+  <dc:creator>Thomas Hegghammer</dc:creator>
+  <link>https://pad.hegghammer.net/posts/my-emerging-llm-workflow/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p>When I tell other academics that I spend a lot of time with large language models, people often ask me what exactly I use them for. This is difficult to answer briefly, because I have explored many different things and am not yet settled in my habits. I have essentially been throwing lots of things at the wall to see what sticks, and it is only recently that I’ve started to see patterns in what I actually find useful.</p>
+<p>Getting to this stage has taken a lot of experimentation. I have tried the products from the big labs as well as indie options from the open source community. I have worked with flagship models, explored frontline open source models, and tested the limits of locally deployed ones. I have finetuned LLMs, set up RAG systems, and tried a range of different memory solutions. Like others in the tech rabbithole, I have been chasing news of the latest models and tools, in the vain hope that the ultimate solution is just one deployment away. Most trials have been duds, but in recent months I’ve noticed my actual LLM usage cluster around four main categories of use cases, each involving a different tool.</p>
+<ol type="1">
+<li><p><strong>General queries</strong>. This is when I have a quick question or problem that does not require much background information, for instance, “how do I do X” or “what is the state of affairs on Y”. For this I simply use an LLM in the browser, currently Claude.ai. I also come here to check in on the capabilities of the flagship models or to throw a particularly difficult problem at them. For privacy I turn off memory accumulation and keep only the conversations I really need.</p></li>
+<li><p><strong>Personal queries</strong>. This is when I have a question that is best answered by a model that knows things about me, such as my preferences, projects, location, family situation, or hardware stack. For this I use an OpenClaw bot that I talk to via Matrix either on my PC or my mobile. The bot accumulates information about me from our conversations and is therefore able to provide fairly tailored advice without me having to input a ton of contextual information every time. I don’t mind the accumulation since I self-host the bot and the matrix server and trust the inference provider.</p></li>
+<li><p><strong>Filesystem work</strong>. This is when I have a task that requires the LLM to have direct access to the files on my computer. For this I use OpenCode (see <a href="../../posts/a-reasonably-private-agentic-llm-stack/index.html">related post</a>) in the terminal. Most of my AI use happens here, and it has become a central part of my daily workflow. I use it for a lot of different things, mostly in the domain of research assistance and computer maintenance. I will have project-focused or thematic folders, and in the root of each I will have a project-specific <code>AGENTS.md</code> file as well as a <code>MEMORY.md</code> file for record-keeping. When I then launch OpenCode in that folder, I get an agent that has both a sense of what the project is about and what was done there in the past. For a research project I might ask for help with things like vetting a bibliography, scraping websites, drafting code for visualisations, curating my Zotero collection, or translating texts in languages I don’t read. On the computer maintenance side I might ask for help modifying some configuration, setting up a new service, or troubleshooting. I self-host a lot of services so I probably have a higher-than-average need for this, but tech stack management is probably the one area where AI has been truly transformational for me; it’s taken away all the friction and I can do much more complicated things than before.</p></li>
+<li><p><strong>Scripted processing</strong>. This is when I need to use an LLM to process or generate data in a controlled and reproducible way, typically for research. In practice this means writing R or Python code in a text editor (VSCodium in my case) to query an LLM via API. For instance, in a recent project on city names in a historical Arabic newspaper corpus, we needed a way to weed out false positives from a list of tens of thousands of apparent city names. We wrote code to pass all the passages to an LLM that would make a judgement based on the context in which the word was used. Scripting the procedure and outputting structured data gave us more control than we would have had by simply prompting an agent. Of course, you can combine agents and scripts, and I increasingly use agents to draft scripts to query other LLMs.</p></li>
+</ol>
+<p>Meanwhile, there are many things I <em>don’t</em> use LLMs for. I never ask them to write text for me, however little, because I suspect it is a slippery slope that passes through sloppiness and ends in plagiarism. (I will, however, ask for help with formatting, proofreading, and analytical feedback.) I also haven’t ventured into AI for email management, because I don’t quite trust models to make good triaging decisions, much less draft authentic-looking responses. This is an area where I do want to keep a hand on the wheel, even if it means slower response times. Another no-go area is high-stakes procedures like managing backups on my NAS. Here I still use handwritten scripts, because the consequences of an LLM misunderstanding something would be catastrophic.</p>
+<p>I also do not think AI yet amounts to a productivity revolution as far as academic research is concerned. Unless you are willing to outsource your writing to an LLM, there is no substitute for the slow work of reading books and the painful process of putting words on a page. To be perfectly honest, the net effect of all my experimentation and tinkering has probably been negative as far as traditional research output is concerned, at least thus far. I can also feel the effects that the cognitive offloading has on things like my coding skills. At the same time, LLMs have helped me solve technical problems that I had struggled with for years, and they have helped me take on more ambitious research questions and data collection tasks. But most importantly I have enjoyed the process; I have gotten a thrill from learning new things, and that counts for a lot.</p>
+
+
+
+ ]]></description>
+  <category>llms</category>
+  <category>agents</category>
+  <guid>https://pad.hegghammer.net/posts/my-emerging-llm-workflow/</guid>
+  <pubDate>Thu, 20 Aug 2026 00:00:00 GMT</pubDate>
+</item>
 <item>
   <title>Getting set up with OpenCode and TensorX models</title>
   <dc:creator>Thomas Hegghammer</dc:creator>
