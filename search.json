@@ -32,6 +32,6 @@
     "href": "about.html",
     "title": "About",
     "section": "",
-    "text": "A microblog by Thomas Hegghammer with notes, thoughts, and TILs on computational methods for the humanities and social sciences."
+    "text": "A microblog by Thomas Hegghammer with notes, thoughts, and TILs on computational methods for the humanities and social sciences. The website was created with Quarto using a modified version of the “blog” template."
   }
 ]
