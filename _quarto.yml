@@ -6,12 +6,14 @@ website:
   site-url: https://pad.hegghammer.net # you must change this appropriately for RSS feeds to work properly
   title: "heggpad"
   favicon: assets/icon.svg
+  page-footer:
+    center: "This work is licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)"
   navbar:
     logo: assets/icon.svg
     right:
       - about.qmd
       - icon: github
-        href: https://github.com/
+        href: https://github.com/Hegghammer/heggpad
 language:
   listing-page-field-categories: "Tags"
 format:

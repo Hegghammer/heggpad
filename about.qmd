@@ -4,4 +4,4 @@ about:
   template: jolla
 ---
 
-A microblog by [Thomas Hegghammer](https://hegghammer.net) with notes, thoughts, and TILs on computational methods for the humanities and social sciences.
+A microblog by [Thomas Hegghammer](https://hegghammer.net) with notes, thoughts, and TILs on computational methods for the humanities and social sciences. The website was created with [Quarto](https://quarto.org) using a modified version of the "blog" template.
