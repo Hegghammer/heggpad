@@ -6,8 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Thomas Hegghammer">
+<meta name="dcterms.date" content="2026-08-22">
 
-<title>heggpad</title>
+<title>My AGENTS.md – heggpad</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -29,26 +31,24 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./assets/icon.svg" rel="icon" type="image/svg+xml">
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-e3adbaa939bcd423dddc8c8a834270b4.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../assets/icon.svg" rel="icon" type="image/svg+xml">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-e3adbaa939bcd423dddc8c8a834270b4.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -76,81 +76,23 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
 
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
 
-    const options = {
-      valueNames: ['listing-date','listing-title','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author"],
-    };
+<link rel="stylesheet" href="../../assets/styles.css">
+</head>
 
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
-
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
-
-<link rel="stylesheet" href="assets/styles.css">
-<link rel="alternate" type="application/rss+xml" title="heggpad" href="index.xml" data-external="1"></head>
-
-<body class="nav-fixed quarto-light">
+<body class="nav-fixed fullcontent quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top quarto-banner">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="./index.html" class="navbar-brand navbar-brand-logo">
-    <img src="./assets/icon.svg" alt="" class="navbar-logo light-content">
-    <img src="./assets/icon.svg" alt="" class="navbar-logo dark-content">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../assets/icon.svg" alt="" class="navbar-logo light-content">
+    <img src="../../assets/icon.svg" alt="" class="navbar-logo dark-content">
     </a>
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">heggpad</span>
     </a>
   </div>
@@ -161,7 +103,7 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./about.html"> 
+    <a class="nav-link" href="../../about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item compact">
@@ -177,134 +119,85 @@ window.Quarto = {
     </nav>
 </header>
 <!-- content -->
-<header id="title-block-header" class="quarto-title-block"></header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">My AGENTS.md</h1>
+                                <div class="quarto-categories">
+                <div class="quarto-category">llms</div>
+                <div class="quarto-category">agents</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Thomas Hegghammer </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">August 22, 2026</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
-    <h5 class="quarto-listing-category-title">Tags</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(4)</span></div><div class="category" data-category="YWdlbnRz">agents <span class="quarto-category-count">(4)</span></div><div class="category" data-category="bGxtcw==">llms <span class="quarto-category-count">(4)</span></div><div class="category" data-category="b3BlbmNvZGU=">opencode <span class="quarto-category-count">(2)</span></div></div></div>
+    
 <!-- main -->
-<main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
-<div class="site-subtitle">
-  Thomas Hegghammer's scratchpad on humanities and social science computing
-</div>
-<script>
-// Keep this site-level subtitle outside the feed's page-column layout.
-const subtitle = document.currentScript.previousElementSibling;
-document.querySelector("#quarto-header")?.after(subtitle);
-document.currentScript.remove();
-</script>
+<main class="content quarto-banner-title-block" id="quarto-document-content">
 
 
 
 
 
+<p>One of the most important parts of configuring an agentic system like OpenCode, Claude Code, or Codex is the instruction file, usually called <code>AGENTS.md</code> (or <code>CLAUDE.md</code> in Claude Code). There are thousands of articles and social media posts about what to put in this file, but the majority of them are written by people who use agents for software development or other things that are a bit removed from academic work. So I thought I’d sketch out what I put in mine, in case other academics and students find it useful.</p>
+<p>As you probably know, <code>AGENTS.md</code> is not a configuration file of the type where you have to pay attention to syntax and indentation. It’s just a <a href="https://markdown.org/basics/">Markdown</a> file with natural language instructions that are passed to the agent at the start of every conversation. It’s there to save you from having to re-enter contextual information about your preferences, needs, and computing environment every time. It is not absolutely necessary – indeed a growing school of thought says frontier models now have such sensible reflexes that you should avoid over-steering them with excessively detailed instructions. But the more specialised your tasks and the more complex your configuration (in terms of tools, skills, MCP servers, etc), the higher the risk that the model will go astray if you don’t provide it with some guidance. Besides, weaker models need more steering, and few of us can afford to use flagship models all the time.</p>
+<p>Perhaps the only hard rule about <code>AGENTS.md</code> files is that they require continuous curation. You should think of it as a living document, not something to set and forget. You can and should tweak it often, in response to the behaviour that you get from the agent and as you learn more about what works and what doesn’t. The upside of this is that you don’t need to worry about getting it just right in the beginning. There is no wrong <code>AGENTS.md</code>, and there is no sample configuration out there that is going to be perfect for your particular situation. I recommend starting very small – perhaps just 5-10 lines – and then building out. Whenever the agent does something undesirable, add a steer in <code>AGENTS.md</code> to prevent it from happening again. If you’re unsure how to formulate it, just ask the agent to draft one. Starting small and building out is much better than copying someone else’s elaborate config, because it means you will understand everything that is in there. Besides, less can be more because model attention is limited. If you pack your <code>AGENTS.md</code> with hundreds of instructions, there a higher risk that some will not be observed. (Same reason why the Bible has ten commandments and not seven hundred and thirty-six).</p>
+<p>Another important thing to bear in mind is that you can and should have two layers of instruction files, in the form of a <strong>central</strong> <code>AGENTS.md</code> as well as <strong>project-specific ones</strong>. The central instruction file lives in your agentic assistant’s configuration folder (<code>~/.config/opencode/AGENTS.md</code> in the case of OpenCode) and should be kept general; consider it a common denominator for all your conversations. The project-specific instruction files live in your project folders (e.g.<code>Documents/articles/latest_project/AGENTS.md</code>) and are only activated when you open the assistant in those folders. If you launch the agentic assistant in a folder with a project-specific <code>AGENTS.md</code>, the assistant will collate the central <code>AGENTS.md</code> and the local one and pass both to the model at the start of the conversation.</p>
+<p>Below I have pasted the headers in my central <code>AGENTS.md</code> to give a sense of the types of things I include. The overarching logic is that there are three main components: things I really care about at the top, a guide to the local environment in the middle, and then soft preferences at the end. This is because it is usually said – though it could just be AI lore – that content early on in a prompt gets more attention.</p>
+<pre><code># OpenCode instructions
+## Truthfulness
+## Publishing and external actions
+## Interaction style
+## Environment
+## OpenCode setup
+## Memory
+## Learning and recovery
+## Tool rules
+## Tool and skill routing
+## Conventions
+## Coding principles</code></pre>
+<ul>
+<li><p><em>Truthfulness</em>: Here I urge the model to be explicit about uncertainty, with a formulation like: <code>CRITICAL: **Never, ever present guesswork as fact**. You either provide verified information, guess and admit uncertainty (with terms like "I think", "perhaps") or say you don't know.</code></p></li>
+<li><p><em>Publishing and external actions</em>: Here I tell the model to never post on my behalf, with a line along the lines of: <code>Before any public or external action taken in the user's name — opening a PR or issue, pushing to a remote, posting to a forum, etc. — draft the content first, show it to the user, and wait for explicit permission to publish.</code></p></li>
+<li><p><em>Interaction style</em>: Here I try to shape its personality, telling it to be concise, not to flatter, to avoid hedging, and so on. I also say <code>Humour and occasional swearing are encouraged</code> just to spice things up.</p></li>
+<li><p><em>Environment</em>: Here I describe my computer system, my filesystem, the topography of the local network.</p></li>
+<li><p><em>OpenCode setup</em>: Here I explain where OpenCode’s key configuration files live so that the model can easily find them.</p></li>
+<li><p><em>Memory</em>: Here I explain how the model should handle memories. (Memory management is complicated, as I hope to explain in a future post).</p></li>
+<li><p><em>Learning and recovery</em>: Here I explain what the model should do to self-correct and self-improve if it realises it has made a mistake.</p></li>
+<li><p><em>Tool rules</em>: here I state some rules about which command-line tools to use for what.</p></li>
+<li><p><em>Tool and skill routing</em>: here I explain which skills the model should turn to for common tasks like creating visualisations, interacting with my Zotero library, checking bibliographies, editing my notes archive, etc.</p></li>
+<li><p><em>Conventions</em>: Here I put stylistic preferences like numbering questions with Q1, Q2 etc, using lists instead of tables, or using the native pipe (<code>|&gt;</code>) instead of the <code>magrittr</code> one (<code>%&gt;%</code>) in R code.</p></li>
+<li><p><em>Coding principles</em>: This is a fairly elaborate section about how the model should proceed when drafting or changing exisisting code (emphasising planning, simplicity, surgical changes, and post-intervention testing).</p></li>
+</ul>
+<p>The actual file is pretty long (about 200 lines) but that’s only because I have been building it over almost a year and use a fairly elaborate harness. I think I started with something like 30 lines. Every month or so, I ask a strong agent to review it for inconsistencies and to suggest ways of making it more concise.</p>
+<p>My project-specific instruction files are quite different and generally shorter than this. They also vary considerably depending on the substance of the project. The only things I always include are 1) an “About” section with a short explainer about project and its current status, and 2) a “Project structure” section with a filetree so that the model knows what is in the various subfolders. At some point I may write a post about how I structure project folders and <code>AGENTS.md</code> files for large projects like books. But not today, because I have to get back to one of those books.</p>
 
 
 
-<div class="quarto-listing quarto-listing-container-table" id="listing-listing">
-<table class="quarto-listing-table table">
-<thead>
-<tr>
-
-<th>
-Date
-</th>
-
-<th>
-Title
-</th>
-
-<th>
-Tags
-</th>
-
-</tr>
-</thead>
-<tbody class="list">
-
-<tr data-index="0" data-categories="bGxtcyUyQ2FnZW50cw==" data-listing-date-sort="1787356800000" data-listing-file-modified-sort="1787415411898" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1184" data-listing-title-sort="My AGENTS.md" data-listing-filename-sort="index.qmd">
-<td>
-<span class="listing-date">2026-08-22</span>
-</td>
-<td>
-<a href="./posts/my-agents-md/index.html" class="title listing-title">My AGENTS.md</a>
-</td>
-<td>
-<span class="listing-categories">llms, agents</span>
-</td>
-
-</tr>
-
-<tr data-index="1" data-categories="bGxtcyUyQ2FnZW50cw==" data-listing-date-sort="1787184000000" data-listing-file-modified-sort="1787415411898" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1048" data-listing-title-sort="My emerging LLM workflow" data-listing-filename-sort="index.qmd">
-<td>
-<span class="listing-date">2026-08-20</span>
-</td>
-<td>
-<a href="./posts/my-emerging-llm-workflow/index.html" class="title listing-title">My emerging LLM workflow</a>
-</td>
-<td>
-<span class="listing-categories">llms, agents</span>
-</td>
-
-</tr>
-
-<tr data-index="2" data-categories="b3BlbmNvZGUlMkNhZ2VudHMlMkNsbG1z" data-listing-date-sort="1786924800000" data-listing-file-modified-sort="1787415411898" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="748" data-listing-title-sort="Getting set up with OpenCode and TensorX models" data-listing-filename-sort="index.qmd">
-<td>
-<span class="listing-date">2026-08-17</span>
-</td>
-<td>
-<a href="./posts/getting-set-up-with-opencode-and-tensorx-models/index.html" class="title listing-title">Getting set up with OpenCode and TensorX models</a>
-</td>
-<td>
-<span class="listing-categories">opencode, agents, llms</span>
-</td>
-
-</tr>
-
-<tr data-index="3" data-categories="bGxtcyUyQ2FnZW50cyUyQ29wZW5jb2Rl" data-listing-date-sort="1786752000000" data-listing-file-modified-sort="1787415411898" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="929" data-listing-title-sort="A reasonably private agentic LLM stack" data-listing-filename-sort="index.qmd">
-<td>
-<span class="listing-date">2026-08-15</span>
-</td>
-<td>
-<a href="./posts/a-reasonably-private-agentic-llm-stack/index.html" class="title listing-title">A reasonably private agentic LLM stack</a>
-</td>
-<td>
-<span class="listing-categories">llms, agents, opencode</span>
-</td>
-
-</tr>
-
-</tbody>
-</table>
-<div class="listing-no-matching d-none">No matching items</div>
-</div></main> <!-- /main -->
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-  document.querySelectorAll(".quarto-listing-table .listing-categories").forEach((container) => {
-    const encodedCategories = container.closest("tr")?.dataset.categories;
-    if (!encodedCategories) return;
-
-    // Use Quarto's row metadata so each link matches its built-in category filter exactly.
-    const categories = decodeURIComponent(atob(encodedCategories)).split(",");
-    container.replaceChildren();
-
-    categories.forEach((category, index) => {
-      if (index > 0) container.append(", ");
-
-      const link = document.createElement("a");
-      link.className = "listing-category-link";
-      link.href = `#category=${encodeURIComponent(category)}`;
-      link.textContent = category;
-      link.addEventListener("click", (event) => {
-        event.preventDefault();
-        window.quartoListingCategory(btoa(encodeURIComponent(category)));
-      });
-      container.append(link);
-    });
-  });
-});
-</script>
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";

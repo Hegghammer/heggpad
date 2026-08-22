@@ -2,6 +2,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/my-agents-md/index.html",
       "/posts/my-emerging-llm-workflow/index.html",
       "/posts/getting-set-up-with-opencode-and-tensorx-models/index.html",
       "/posts/a-reasonably-private-agentic-llm-stack/index.html"
