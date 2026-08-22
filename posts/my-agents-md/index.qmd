@@ -1,0 +1,57 @@
+---
+title: "My AGENTS.md"
+author: "Thomas Hegghammer"
+date: "2026-08-22"
+categories: [llms, agents]
+---
+
+One of the most important parts of configuring an agentic system like OpenCode, Claude Code, or Codex is the instruction file, usually called `AGENTS.md` (or `CLAUDE.md` in Claude Code). There are thousands of articles and social media posts about what to put in this file, but the majority of them are written by people who use agents for software development or other things that are a bit removed from academic work. So I thought I'd sketch out what I put in mine, in case other academics and students find it useful. 
+
+As you probably know, `AGENTS.md` is not a configuration file of the type where you have to pay attention to syntax and indentation. It's just a [Markdown](https://markdown.org/basics/) file with natural language instructions that are passed to the agent at the start of every conversation. It's there to save you from having to re-enter contextual information about your preferences, needs, and computing environment every time. It is not absolutely necessary -- indeed a growing school of thought says frontier models now have such sensible reflexes that you should avoid over-steering them with excessively detailed instructions. But the more specialised your tasks and the more complex your configuration (in terms of tools, skills, MCP servers, etc), the higher the risk that the model will go astray if you don't provide it with some guidance. Besides, weaker models need more steering, and few of us can afford to use flagship models all the time. 
+
+Perhaps the only hard rule about `AGENTS.md` files is that they require continuous curation. You should think of it as a living document, not something to set and forget. You can and should tweak it often, in response to the behaviour that you get from the agent and as you learn more about what works and what doesn't. The upside of this is that you don't need to worry about getting it just right in the beginning. There is no wrong `AGENTS.md`, and there is no sample configuration out there that is going to be perfect for your particular situation. I recommend starting very small -- perhaps just 5-10 lines -- and then building out. Whenever the agent does something undesirable, add a steer in `AGENTS.md` to prevent it from happening again. If you're unsure how to formulate it, just ask the agent to draft one. Starting small and building out is much better than copying someone else's elaborate config, because it means you will understand everything that is in there. Besides, less can be more because model attention is limited. If you pack your `AGENTS.md` with hundreds of instructions, there a higher risk that some will not be observed. (Same reason why the Bible has ten commandments and not seven hundred and thirty-six). 
+
+Another important thing to bear in mind is that you can and should have two layers of instruction files, in the form of a **central** `AGENTS.md` as well as **project-specific ones**. The central instruction file lives in your agentic assistant's configuration folder (`~/.config/opencode/AGENTS.md` in the case of OpenCode) and should be kept general; consider it a common denominator for all your conversations. The project-specific instruction files live in your project folders (e.g.`Documents/articles/latest_project/AGENTS.md`) and are only activated when you open the assistant in those folders. If you launch the agentic assistant in a folder with a project-specific `AGENTS.md`, the assistant will collate the central `AGENTS.md` and the local one and pass both to the model at the start of the conversation. 
+
+Below I have pasted the headers in my central `AGENTS.md` to give a sense of the types of things I include. The overarching logic is that there are three main components: things I really care about at the top, a guide to the local environment in the middle, and then soft preferences at the end. This is because it is usually said -- though it could just be AI lore -- that content early on in a prompt gets more attention. 
+
+```
+# OpenCode instructions
+## Truthfulness
+## Publishing and external actions
+## Interaction style
+## Environment
+## OpenCode setup
+## Memory
+## Learning and recovery
+## Tool rules
+## Tool and skill routing
+## Conventions
+## Coding principles
+```
+
+- *Truthfulness*: Here I urge the model to be explicit about uncertainty, with a formulation like: `CRITICAL: **Never, ever present guesswork as fact**. You either provide verified information, guess and admit uncertainty (with terms like "I think", "perhaps") or say you don't know.`  
+
+- *Publishing and external actions*: Here I tell the model to never post on my behalf, with a line along the lines of: `Before any public or external action taken in the user's name — opening a PR or issue, pushing to a remote, posting to a forum, etc. — draft the content first, show it to the user, and wait for explicit permission to publish.`
+
+- *Interaction style*: Here I try to shape its personality, telling it to be concise, not to flatter, to avoid hedging, and so on. I also say `Humour and occasional swearing are encouraged` just to spice things up.   
+
+- *Environment*: Here I describe my computer system, my filesystem, the topography of the local network.
+
+- *OpenCode setup*: Here I explain where OpenCode's key configuration files live so that the model can easily find them. 
+
+- *Memory*: Here I explain how the model should handle memories. (Memory management is complicated, as I hope to explain in a future post). 
+
+- *Learning and recovery*: Here I explain what the model should do to self-correct and self-improve if it realises it has made a mistake. 
+
+- *Tool rules*: here I state some rules about which command-line tools to use for what.
+
+- *Tool and skill routing*: here I explain which skills the model should turn to for common tasks like creating visualisations, interacting with my Zotero library, checking bibliographies, editing my notes archive, etc. 
+
+- *Conventions*: Here I put stylistic preferences like numbering questions with Q1, Q2 etc, using lists instead of tables, or using the native pipe (`|>`) instead of the `magrittr` one (`%>%`) in R code. 
+
+- *Coding principles*: This is a fairly elaborate section about how the model should proceed when drafting or changing exisisting code (emphasising planning, simplicity, surgical changes, and post-intervention testing).
+
+The actual file is pretty long (about 200 lines) but that's only because I have been building it over almost a year and use a fairly elaborate harness. I think I started with something like 30 lines. Every month or so, I ask a strong agent to review it for inconsistencies and to suggest ways of making it more concise.
+
+My project-specific instruction files are quite different and generally shorter than this. They also vary considerably depending on the substance of the project. The only things I always include are 1) an "About" section with a short explainer about project and its current status, and 2) a "Project structure" section with a filetree so that the model knows what is in the various subfolders. At some point I may write a post about how I structure project folders and `AGENTS.md` files for large projects like books. But not today, because I have to get back to one of those books. 
