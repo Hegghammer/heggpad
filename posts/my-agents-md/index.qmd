@@ -36,7 +36,7 @@ Below I have pasted the headers in my central `AGENTS.md` to give a sense of the
 
 - *Interaction style*: Here I try to shape its personality, telling it to be concise, not to flatter, to avoid hedging, and so on. I also say `Humour and occasional swearing are encouraged` just to spice things up.   
 
-- *Environment*: Here I describe my computer system, my filesystem, the topography of the local network.
+- *Environment*: Here I describe my computer system, my filesystem, and the topography of the local network.
 
 - *OpenCode setup*: Here I explain where OpenCode's key configuration files live so that the model can easily find them. 
 
