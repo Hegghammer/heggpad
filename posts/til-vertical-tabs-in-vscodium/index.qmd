@@ -1,0 +1,12 @@
+---
+title: "TIL: vertical tabs in VSCodium"
+author: "Thomas Hegghammer"
+date: "2026-08-27"
+categories: [TIL, vscodium, text_editors, tricks]
+---
+
+Tabs have always frustrated me in [VSCodium](https://vscodium.com) (my go-to text editor). You want to browse a bunch of files, but each click in the file explorer creates a new tab. Exceed five or six and you can't even see how many you have open. And pruning is fiddly.
+
+Today I discovered a simple solution: **[vertical tabs](https://weberdominik.com/blog/vscode-vertical-tabs)**. Just open the secondary sidebar, drag the "Open Editors" element over, and you get a neat list for better overview and easier tab curation.
+
+Btw this trick also works for other things that live in the primary sidebar by default and that you would like to have easier access to. I do this also for the R extension, to get an RStudio-style pane showing workspace objects. But vertical tabs is even more useful, at least for us tab-haters. 
