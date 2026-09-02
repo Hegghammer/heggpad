@@ -1,0 +1,12 @@
+---
+title: "TIL: getting markdown into emails"
+author: "Thomas Hegghammer"
+date: "2026-08-27"
+categories: [TIL, email, markdown, text_editors]
+---
+
+Today I needed to get a section from a Markdown document into an HTML email, quickly. It was a long list of URLs and I wanted them to render as hyperlinks. I use Markdown for everything, so I was slightly embarrassed to be stumped by this.
+
+The solution: *use your text editor's Markdown preview functionality and just copy and paste from the preview*. Works both in Thunderbird and in browser based email.
+
+Yes, there are other solutions, like [markdown-here](https://markdown-here.com) and various extensions in Thunderbird. But extensions are clutter and I prefer to do without them if I can.
