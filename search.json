@@ -16,7 +16,7 @@
   {
     "objectID": "posts/til-getting-markdown-into-email/index.html",
     "href": "posts/til-getting-markdown-into-email/index.html",
-    "title": "TIL: getting markdown into emails",
+    "title": "TIL: getting Markdown into emails",
     "section": "",
     "text": "Today I needed to get a section from a Markdown document into an HTML email, quickly. It was a long list of URLs and I wanted them to render as hyperlinks. I use Markdown for everything, so I was slightly embarrassed to be stumped by this.\nThe solution: use your text editor’s Markdown preview functionality and just copy and paste from the preview. Works both in Thunderbird and in browser based email.\nYes, there are other solutions, like markdown-here and various extensions in Thunderbird. But extensions are clutter and I prefer to do without them if I can."
   },
@@ -116,6 +116,6 @@
     "href": "index.html",
     "title": "heggpad",
     "section": "",
-    "text": "Thomas Hegghammer's scratchpad on humanities and social science computing\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDate\n\n\n\nTitle\n\n\n\nTags\n\n\n\n\n\n\n\n\n2026-09-02\n\n\nOrganising data-rich projects\n\n\nwriting, workflow\n\n\n\n\n\n\n2026-08-27\n\n\nTIL: vertical tabs in VSCodium\n\n\nTIL, vscodium, text_editors, tricks\n\n\n\n\n\n\n2026-08-27\n\n\nTIL: getting markdown into emails\n\n\nTIL, email, markdown, text_editors\n\n\n\n\n\n\n2026-08-22\n\n\nMy AGENTS.md\n\n\nllms, agents\n\n\n\n\n\n\n2026-08-20\n\n\nMy emerging LLM workflow\n\n\nllms, agents\n\n\n\n\n\n\n2026-08-17\n\n\nGetting set up with OpenCode and TensorX models\n\n\nopencode, agents, llms\n\n\n\n\n\n\n2026-08-15\n\n\nA reasonably private agentic LLM stack\n\n\nllms, agents, opencode\n\n\n\n\n\n\nNo matching items"
+    "text": "Thomas Hegghammer's scratchpad on humanities and social science computing\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDate\n\n\n\nTitle\n\n\n\nTags\n\n\n\n\n\n\n\n\n2026-09-02\n\n\nOrganising data-rich projects\n\n\nwriting, workflow\n\n\n\n\n\n\n2026-08-27\n\n\nTIL: vertical tabs in VSCodium\n\n\nTIL, vscodium, text_editors, tricks\n\n\n\n\n\n\n2026-08-27\n\n\nTIL: getting Markdown into emails\n\n\nTIL, email, markdown, text_editors\n\n\n\n\n\n\n2026-08-22\n\n\nMy AGENTS.md\n\n\nllms, agents\n\n\n\n\n\n\n2026-08-20\n\n\nMy emerging LLM workflow\n\n\nllms, agents\n\n\n\n\n\n\n2026-08-17\n\n\nGetting set up with OpenCode and TensorX models\n\n\nopencode, agents, llms\n\n\n\n\n\n\n2026-08-15\n\n\nA reasonably private agentic LLM stack\n\n\nllms, agents, opencode\n\n\n\n\n\n\nNo matching items"
   }
 ]
