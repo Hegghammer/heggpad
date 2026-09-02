@@ -7,7 +7,7 @@ website:
   title: "heggpad"
   favicon: assets/icon.svg
   page-footer:
-    center: "This work is licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)"
+    center: "This work is licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) · [Privacy](/privacy.html)"
   navbar:
     logo: assets/icon.svg
     right:
@@ -22,3 +22,4 @@ format:
       - cosmo
       - brand
     css: assets/styles.css
+    include-in-header: assets/goatcounter.html

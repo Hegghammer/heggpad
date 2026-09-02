@@ -1,0 +1,9 @@
+---
+title: "Privacy"
+---
+
+This site uses a self-hosted instance of [GoatCounter](https://www.goatcounter.com/) to collect aggregate visitor statistics, such as page views and referrers. GoatCounter uses no cookies, stores nothing in your browser, and does not create persistent visitor profiles.
+
+IP addresses and browser information are processed temporarily in memory but are not stored by GoatCounter. Individual page views are not retained, and browser Do Not Track requests are honoured. The analytics data is stored on my own server, although requests to the analytics service pass through Cloudflare.
+
+To opt out, enable Do Not Track in your browser before visiting the site. For further questions, contact the site administrator (email available at [hegghammer.net](https://hegghammer.net/)).
