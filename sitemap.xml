@@ -2,38 +2,42 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://pad.hegghammer.net/privacy.html</loc>
-    <lastmod>2026-09-02T18:11:51.952Z</lastmod>
+    <lastmod>2026-09-02T21:27:19.846Z</lastmod>
   </url>
   <url>
     <loc>https://pad.hegghammer.net/about.html</loc>
-    <lastmod>2026-09-02T18:11:51.952Z</lastmod>
+    <lastmod>2026-09-02T21:27:19.845Z</lastmod>
   </url>
   <url>
-    <loc>https://pad.hegghammer.net/posts/my-emerging-llm-workflow/index.html</loc>
-    <lastmod>2026-09-02T18:11:51.952Z</lastmod>
-  </url>
-  <url>
-    <loc>https://pad.hegghammer.net/posts/organising-data-rich-projects/index.html</loc>
-    <lastmod>2026-09-02T18:11:51.952Z</lastmod>
-  </url>
-  <url>
-    <loc>https://pad.hegghammer.net/posts/a-reasonably-private-agentic-llm-stack/index.html</loc>
-    <lastmod>2026-09-02T18:11:51.952Z</lastmod>
-  </url>
-  <url>
-    <loc>https://pad.hegghammer.net/posts/getting-set-up-with-opencode-and-tensorx-models/index.html</loc>
-    <lastmod>2026-09-02T18:11:51.952Z</lastmod>
+    <loc>https://pad.hegghammer.net/posts/til-getting-markdown-into-email/index.html</loc>
+    <lastmod>2026-09-02T21:27:19.846Z</lastmod>
   </url>
   <url>
     <loc>https://pad.hegghammer.net/posts/til-vertical-tabs-in-vscodium/index.html</loc>
-    <lastmod>2026-09-02T18:11:51.952Z</lastmod>
+    <lastmod>2026-09-02T21:27:19.846Z</lastmod>
+  </url>
+  <url>
+    <loc>https://pad.hegghammer.net/posts/getting-set-up-with-opencode-and-tensorx-models/index.html</loc>
+    <lastmod>2026-09-02T21:27:19.846Z</lastmod>
+  </url>
+  <url>
+    <loc>https://pad.hegghammer.net/posts/a-reasonably-private-agentic-llm-stack/index.html</loc>
+    <lastmod>2026-09-02T21:27:19.846Z</lastmod>
+  </url>
+  <url>
+    <loc>https://pad.hegghammer.net/posts/organising-data-rich-projects/index.html</loc>
+    <lastmod>2026-09-02T21:27:19.846Z</lastmod>
+  </url>
+  <url>
+    <loc>https://pad.hegghammer.net/posts/my-emerging-llm-workflow/index.html</loc>
+    <lastmod>2026-09-02T21:27:19.846Z</lastmod>
   </url>
   <url>
     <loc>https://pad.hegghammer.net/posts/my-agents-md/index.html</loc>
-    <lastmod>2026-09-02T18:11:51.952Z</lastmod>
+    <lastmod>2026-09-02T21:27:19.846Z</lastmod>
   </url>
   <url>
     <loc>https://pad.hegghammer.net/index.html</loc>
-    <lastmod>2026-09-02T18:11:51.952Z</lastmod>
+    <lastmod>2026-09-02T21:27:19.846Z</lastmod>
   </url>
 </urlset>
