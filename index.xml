@@ -10,7 +10,238 @@
 <atom:link href="https://pad.hegghammer.net/index.xml" rel="self" type="application/rss+xml"/>
 <description>Thomas Hegghammer&#39;s scratchpad</description>
 <generator>quarto-1.10.18</generator>
-<lastBuildDate>Thu, 27 Aug 2026 00:00:00 GMT</lastBuildDate>
+<lastBuildDate>Wed, 02 Sep 2026 00:00:00 GMT</lastBuildDate>
+<item>
+  <title>Organising data-rich projects</title>
+  <dc:creator>Thomas Hegghammer</dc:creator>
+  <link>https://pad.hegghammer.net/posts/organising-data-rich-projects/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p>It was always difficult to manage large computational projects, but agents have made things a lot worse by making code production so cheap. I recently had to clean up two project folders where I had almost completely lost track of where things were and what was doing what. It prompted me to collect some of my thoughts and notes on the subject of workspace organisation.</p>
+<p>Knowing where to put stuff on a computer is one of those meta-skills that are rarely taught in universities even though it’s central to everybody’s work. There is obviously no one right way of doing it; every person, field, and project is different. But it is also not the case that anything goes; some ways of doing things are going to create more friction than others. The challenge is identifying the rules of thumb that reduce it.</p>
+<p>Some fields have more of a sharing culture on this subject than others. <a href="https://web.archive.org/web/20130209222835/http://www.ploscompbiol.org/article/info:doi/10.1371/journal.pcbi.1000424">Computational biology</a> is good at this, as is the data science community with its frameworks like <a href="https://cookiecutter-data-science.drivendata.org">Cookiecutter</a>. There is less of a public discussion in the digital humanities and computational social sciences, even though <a href="https://kieranhealy.org">Kieran Healy</a> and others have done much to put it on the agenda. If you are like me and work more at the humanities end of the spectrum, you might find Cookiecutter a bit too software development-oriented and the biology frameworks too experiments-focused.</p>
+<p>Below is a list of principles that have worked for me, along with some thoughts on how to implement them concretely in a project folder. It is inspired by Cookiecutter but adds tweaks based on my personal experience. Since I started implementing these ideas, I have found it much easier to stay on top of complex projects. I also get better output from agents, presumably because they, too, are less confused about where things are.</p>
+<section id="ten-principles" class="level2">
+<h2 class="anchored" data-anchor-id="ten-principles">Ten principles</h2>
+<ol type="1">
+<li>Don’t overcomplicate. What works is what you can actually maintain.</li>
+<li>Keep a conceptual map of what your various scripts do (what IT people call “the graph”).</li>
+<li>Strive for linearity. Scripts should move raw data through a pipeline in one direction without jumping back and forth.</li>
+<li>Separate exploration and production code. Explore first, then move the good bits to polished production scripts.</li>
+<li>Avoid redundancies. Keep scripts modular and unique, and keep only one version of the raw data.</li>
+<li>Document your work. Write notes, keep logs, and record dependency information.</li>
+<li>Curate. Regularly delete what you no longer need; archive things you are unsure about.</li>
+<li>Use a build automation tool for production scripts. It weeds out problems early and gives you a holistic view of the pipeline.</li>
+<li>Test run the whole pipeline frequently. Cache outputs of slow processes.</li>
+<li>Have a file naming convention.</li>
+</ol>
+</section>
+<section id="an-implementation" class="level2">
+<h2 class="anchored" data-anchor-id="an-implementation">An implementation</h2>
+<section id="a-data-folder" class="level3">
+<h3 class="anchored" data-anchor-id="a-data-folder">1. A data folder</h3>
+<ul>
+<li>Just call it <code>data/</code>.</li>
+<li>Then have subfolders for different types of data. Raw data should be separate (e.g., <code>data/raw/</code>)</li>
+<li>I tend to use something like this:</li>
+</ul>
+<pre><code>├── data
+│   ├── annotated      &lt;- Human annotations
+│   ├── cache          &lt;- Output of expensive/timeconsuming processes
+│   ├── external       &lt;- Data from third party sources.
+│   ├── interim        &lt;- Easily reproducible intermediate data
+│   ├── processed      &lt;- Canonical datasets for modeling
+│   └── raw            &lt;- Original, immutable data</code></pre>
+</section>
+<section id="a-folder-for-exploration-code" class="level3">
+<h3 class="anchored" data-anchor-id="a-folder-for-exploration-code">2. A folder for exploration code</h3>
+<ul>
+<li>Separate exploration code from production code. Do the messy work in the exploration area and move the good bits to production. Having a single <code>scripts/</code> folder is a recipe for chaos.</li>
+<li>The exploration folder can be called anything, but a common name is <code>notebooks/</code> (from Jupyter notebooks, which many people use for this). <code>explore/</code> is also intuitive.</li>
+<li>Use subfolders as you please; what works as a level 2 structure is usually project-contingent.</li>
+</ul>
+</section>
+<section id="a-folder-for-production-code" class="level3">
+<h3 class="anchored" data-anchor-id="a-folder-for-production-code">3. A folder for production code</h3>
+<ul>
+<li>This is for the code to be used in the final pipeline. It should be parsimonious and robust.</li>
+<li>A common name convention is <code>/src</code>. Cookiecutter actually makes the code a python package and names the folder after the package. This has advantage of letting you import the code as modules in notebooks. But it assumes everything is Python, which is not necessarily the case.</li>
+<li>The folder need not be for computer code only. If the project involves a manuscript that renders from <code>.tex</code> or <code>.qmd</code> files, those files can go here too.</li>
+</ul>
+</section>
+<section id="a-folder-for-presentable-outputs" class="level3">
+<h3 class="anchored" data-anchor-id="a-folder-for-presentable-outputs">4. A folder for presentable outputs</h3>
+<ul>
+<li>This is for manuscripts, slides, reports, figures and other things that will be public-facing.<br>
+</li>
+<li>A common name is <code>reports/</code> (Cookiecutter uses this), but something intiuitive like <code>out/</code> also works.<br>
+</li>
+<li>How you organise this folder is a matter of preference. I tend to do something like this:</li>
+</ul>
+<pre><code>├── out
+│   ├── interim
+|   |   ├── figures
+|   |   └── pdfs
+│   ├── ready
+|   |   ├── figures
+|   |   └── pdfs</code></pre>
+<ul>
+<li>I tend to put the code that outputs to <code>out/interim/</code> in <code>explore/</code>, and the one that outputs to <code>out/ready/</code> in <code>src/</code>. That way all code and unrendered plaintext lives in one of those directories, and it becomes easier to maintain the maturation pipeline (from exploration to production).</li>
+</ul>
+</section>
+<section id="a-folder-for-project-documentation" class="level3">
+<h3 class="anchored" data-anchor-id="a-folder-for-project-documentation">5. A folder for project documentation</h3>
+<ul>
+<li>This is for notes of various kinds, for example about project history, ideas, links to external resources, etc.</li>
+<li>Many call it <code>docs/</code>, but <code>notes/</code> obviously also works.</li>
+<li>Write notes in Markdown. That way you can easily turn them into a browsable site with a static site generators like <a href="https://www.mkdocs.org">mkdocs</a> or work with them in a note taking system like <a href="https://obsidian.md">Obsidian</a> or <a href="https://foam.md">Foam</a>.</li>
+</ul>
+</section>
+<section id="an-archive-folder" class="level3">
+<h3 class="anchored" data-anchor-id="an-archive-folder">6. An archive folder</h3>
+<p>This helps keep the other folders tidy by lowering the bar for moving things out. Without an archive, clutter accumulates because you are worried about deleting things. A name like <code>archive/</code> does the job.</p>
+</section>
+<section id="a-project-map" class="level3">
+<h3 class="anchored" data-anchor-id="a-project-map">7. A project map</h3>
+<p>Keep one or more documents that provide an overview of how the various scripts and output files interrelate. There are several ways of doing this, for example:</p>
+<ul>
+<li>Diagrams. Draw one in Excalidraw or Obsidian Canvas, script one in Mermaid, or draw one by hand and have an LLM produce a digital version of it.</li>
+<li>A Markdown document with lists or tables</li>
+<li>YAML files. This has the advantage of being machine readable, so your scripts can load paths from them.</li>
+</ul>
+<p>You can automate all or parts of the mapping. If you use <a href="https://makefiletutorial.com">make</a> or similar, there are utilities that can generate graphs based on the <code>Makefile</code>. These days you can also just ask an agent to parse the workspace or the Makefile and draft a diagram/list/YAML for you.</p>
+<p>Personally I use Excalidraw diagrams and a <code>config.yaml</code> file. I put both in a <code>reference/</code> folder.</p>
+<p>If you want to be thorough, you can keep a manifest file (e.g.&nbsp;<code>MANIFEST.md</code>) with an overview of the file tree, a short description of each script, column names and row counts of each dataset, last-modified dates, etc. You can write a small script that generates a <code>MANIFEST.md</code> for you by reading the filesystem, fetching docstrings from script, reading the CSV files, etc. Manifest files are good for providing agents with up to date information about the status of the project.</p>
+</section>
+<section id="a-memory-system" class="level3">
+<h3 class="anchored" data-anchor-id="a-memory-system">8. A memory system</h3>
+<p>You need a record of what was done in the project and ideally some way to restore earlier versions of files. There are several options here, and you can mix and match them according to your needs and preferences:</p>
+<ul>
+<li>Version control (Git) with meaningful commit messages.</li>
+<li>A <code>MEMORY.md</code> file where agents record what whey have done.</li>
+<li>A <code>LOG.md</code> file where you manually write what you have done in each session.</li>
+<li>A <code>DECISIONS.md</code> file with important strategic decisisions and their rationale.</li>
+<li>A todo plugin with automatic archiving, like the VSCode extension <a href="https://marketplace.visualstudio.com/items?itemName=usernamehw.todo-md">Todo MD</a>.</li>
+</ul>
+<p>If you keep several types of log files, you can gather them in a <code>logs/</code> directory.</p>
+</section>
+<section id="a-build-tool-or-workflow-orchestrator" class="level3">
+<h3 class="anchored" data-anchor-id="a-build-tool-or-workflow-orchestrator">9. A build tool or workflow orchestrator</h3>
+<p>Use a utility such as <a href="https://makefiletutorial.com">GNU Make</a> to automate and codify the build process for your outputs. Aside from saving you time by reducing multiple commands down to one, it improves reproducibility, helps you weed out bugs early, and forces you to think holistically about your project.</p>
+</section>
+<section id="a-record-of-dependencies" class="level3">
+<h3 class="anchored" data-anchor-id="a-record-of-dependencies">10. A record of dependencies</h3>
+<p>It’s important to keep track of the versions of the packages you are using so that the code becomes reproducible.</p>
+<p>For Python, I recommend keeping a <code>pyproject.toml</code> file and generating a <code>requirements.txt</code> with <code>uv pip compile pyproject.toml -o requirements.txt</code>. Fo R, the most widely used method is to use the <code>renv</code> package to create an <code>renv.lock</code> file.</p>
+</section>
+<section id="a-folder-for-artifacts-such-as-external-images-pdfs-and-bib-files" class="level3">
+<h3 class="anchored" data-anchor-id="a-folder-for-artifacts-such-as-external-images-pdfs-and-bib-files">11. A folder for artifacts such as external images, pdfs, and bib files</h3>
+<p>A commonly used name for this is <code>assets/</code>.</p>
+</section>
+<section id="a-scratchpad" class="level3">
+<h3 class="anchored" data-anchor-id="a-scratchpad">12. A scratchpad</h3>
+<p>It is useful to have a folder named <code>temp/</code> or <code>scratch/</code> where you (and agents) can draft or dump things.</p>
+</section>
+<section id="a-readme.md-for-orientation" class="level3">
+<h3 class="anchored" data-anchor-id="a-readme.md-for-orientation">13. A <code>README.md</code> for orientation</h3>
+<p>This helps third parties who come to the workspace for the first time orient themselves. It also becomes the landing page on GitHub/GitLab if you push it there. You can have additional READMEs in subfolders to help future readers understand what’s in them.</p>
+</section>
+</section>
+<section id="optional-elements" class="level2">
+<h2 class="anchored" data-anchor-id="optional-elements">Optional elements</h2>
+<ul>
+<li>An <code>AGENTS.md</code> file. If you are using agents you will want this.</li>
+<li>A secrets file like <code>.env</code> or <code>.Renviron</code> for API keys or other sensitive information.</li>
+<li>A folder for trained/finetuned models (e.g.&nbsp;<code>models/</code> or <code>assets/models</code>)</li>
+<li>A folder for configuration files (e.g.&nbsp;<code>config/</code>)</li>
+<li>A folder (<code>references/</code>) for explanatory materials (data dictionaries, manuals, etc).</li>
+</ul>
+</section>
+<section id="filename-conventions" class="level2">
+<h2 class="anchored" data-anchor-id="filename-conventions">Filename conventions</h2>
+<p>There is no right way to do this either. The most important is to be consistent. If there are several of you working on the same project, document the convention.</p>
+<p>There are some conventions worth observing, such as using verbs for scripts (<code>process_data.py</code>) and nouns for data files (<code>output.csv</code>).</p>
+<p>But the most important principle is to leverage alphabetic order:</p>
+<ul>
+<li>Force custom order with file and folder prefixes like <code>00_</code>, <code>01_</code>, etc.</li>
+<li>Use YYYY-MM-DD for dates in filenames to get them in chronological order.</li>
+<li>Group files by placing keywords early. For example, if you don’t like:</li>
+</ul>
+<pre><code>process_egypt_data.R
+process_syria_data.R
+visualise_egypt_data.R
+visualise_syria_data.R</code></pre>
+<p>Just do:</p>
+<pre><code>egypt_process_data.R
+egypt_visualise_data.R
+syria_process_data.R
+syria_visualise_data.R</code></pre>
+</section>
+<section id="the-structure-i-currently-tend-to-use" class="level2">
+<h2 class="anchored" data-anchor-id="the-structure-i-currently-tend-to-use">The structure I currently tend to use</h2>
+<pre><code>.
+├── archive
+├── assets
+├── data
+├── docs
+├── explore
+├── logs
+├── out
+├── reference
+├── src
+└── temp</code></pre>
+<p>With subdirectories it may look like this (though it varies by project):</p>
+<pre><code>.
+├── archive
+├── assets
+│&nbsp;&nbsp; ├── bib
+│&nbsp;&nbsp; ├── images
+│&nbsp;&nbsp; └── pdfs
+├── data
+│&nbsp;&nbsp; ├── annotated
+│&nbsp;&nbsp; ├── cache
+│&nbsp;&nbsp; ├── external
+│&nbsp;&nbsp; ├── interim
+│&nbsp;&nbsp; ├── processed
+│&nbsp;&nbsp; └── raw
+├── docs
+│&nbsp;&nbsp; └── docs
+├── explore
+├── logs
+├── out
+│&nbsp;&nbsp; └── interim
+│&nbsp;&nbsp;     ├── figures
+│&nbsp;&nbsp;     └── pdfs
+│&nbsp;&nbsp; └── ready
+│&nbsp;&nbsp;     ├── figures
+│&nbsp;&nbsp;     └── pdfs
+├── reference
+├── src
+└── temp</code></pre>
+</section>
+<section id="articles-i-learned-from" class="level2">
+<h2 class="anchored" data-anchor-id="articles-i-learned-from">Articles I learned from</h2>
+<ul>
+<li><a href="https://web.archive.org/web/20130209222835/http://www.ploscompbiol.org/article/info:doi/10.1371/journal.pcbi.1000424">PLOS Computational Biology: A Quick Guide to Organizing Computational Biology Projects</a></li>
+<li><a href="https://www.carlboettiger.info/2012/05/06/research-workflow.html">My research workflow, based on Github</a></li>
+<li><a href="https://web.archive.org/web/20260117164010/https://nicercode.github.io/blog/2013-04-05-projects/">Designing projects - Nice R Code</a></li>
+<li><a href="https://web.archive.org/web/20130312015313/https://software-carpentry.org/4_0/data/mgmt.html">Software Carpentry: Data / Data Management</a></li>
+<li><a href="https://techietory.com/data-science/organizing-your-data-science-project-files/">Organizing Your Data Science Project Files: Complete Guide</a></li>
+</ul>
+
+
+</section>
+
+ ]]></description>
+  <category>writing</category>
+  <category>workflow</category>
+  <guid>https://pad.hegghammer.net/posts/organising-data-rich-projects/</guid>
+  <pubDate>Wed, 02 Sep 2026 00:00:00 GMT</pubDate>
+</item>
 <item>
   <title>TIL: vertical tabs in VSCodium</title>
   <dc:creator>Thomas Hegghammer</dc:creator>
