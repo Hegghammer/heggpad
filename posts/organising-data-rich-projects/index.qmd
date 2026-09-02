@@ -1,0 +1,222 @@
+---
+title: "Organising data-rich projects"
+author: "Thomas Hegghammer"
+date: "2026-09-02"
+categories: [writing,workflow]
+---
+
+It was always difficult to manage large computational projects, but agents have made things a lot worse by making code production so cheap. I recently had to clean up two project folders where I had almost completely lost track of where things were and what was doing what. It prompted me to collect some of my thoughts and notes on the subject of workspace organisation. 
+
+Knowing where to put stuff on a computer is one of those meta-skills that are rarely taught in universities even though it's central to everybody's work. There is obviously no one right way of doing it; every person, field, and project is different. But it is also not the case that anything goes; some ways of doing things are going to create more friction than others. The challenge is identifying the rules of thumb that reduce it. 
+
+Some fields have more of a sharing culture on this subject than others. [Computational biology](https://web.archive.org/web/20130209222835/http://www.ploscompbiol.org/article/info:doi/10.1371/journal.pcbi.1000424) is good at this, as is the data science community with its frameworks like [Cookiecutter](https://cookiecutter-data-science.drivendata.org). There is less of a public discussion in the digital humanities and computational social sciences, even though [Kieran Healy](https://kieranhealy.org) and others have done much to put it on the agenda. If you are like me and work more at the humanities end of the spectrum, you might find Cookiecutter a bit too software development-oriented and the biology frameworks too experiments-focused.
+
+Below is a list of principles that have worked for me, along with some thoughts on how to implement them concretely in a project folder. It is inspired by Cookiecutter but adds tweaks based on my personal experience. Since I started implementing these ideas, I have found it much easier to stay on top of complex projects. I also get better output from agents, presumably because they, too, are less confused about where things are. 
+
+## Ten principles
+
+1. Don't overcomplicate. What works is what you can actually maintain.
+2. Keep a conceptual map of what your various scripts do (what IT people call "the graph").
+3. Strive for linearity. Scripts should move raw data through a pipeline in one direction without jumping back and forth.
+4. Separate exploration and production code. Explore first, then move the good bits to polished production scripts.
+5. Avoid redundancies. Keep scripts modular and unique, and keep only one version of the raw data.
+6. Document your work. Write notes, keep logs, and record dependency information.
+7. Curate. Regularly delete what you no longer need; archive things you are unsure about. 
+8. Use a build automation tool for production scripts. It weeds out problems early and gives you a holistic view of the pipeline.
+9. Test run the whole pipeline frequently. Cache outputs of slow processes.
+10. Have a file naming convention.
+
+## An implementation
+
+### 1. A data folder
+
+- Just call it `data/`.
+- Then have subfolders for different types of data. Raw data should be separate (e.g., `data/raw/`)
+- I tend to use something like this:
+
+```
+├── data
+│   ├── annotated      <- Human annotations
+│   ├── cache          <- Output of expensive/timeconsuming processes
+│   ├── external       <- Data from third party sources.
+│   ├── interim        <- Easily reproducible intermediate data
+│   ├── processed      <- Canonical datasets for modeling
+│   └── raw            <- Original, immutable data
+```
+
+### 2. A folder for exploration code
+
+- Separate exploration code from production code. Do the messy work in the exploration area and move the good bits to production. Having a single `scripts/` folder is a recipe for chaos. 
+- The exploration folder can be called anything, but a common name is `notebooks/` (from Jupyter notebooks, which many people use for this). `explore/` is also intuitive. 
+- Use subfolders as you please; what works as a level 2 structure is usually project-contingent.
+
+### 3. A folder for production code
+
+- This is for the code to be used in the final pipeline. It should be parsimonious and robust. 
+- A common name convention is `/src`. Cookiecutter actually makes the code a python package and names the folder after the package. This has advantage of letting you import the code as modules in notebooks. But it assumes everything is Python, which is not necessarily the case.
+- The folder need not be for computer code only. If the project involves a manuscript that renders from `.tex` or `.qmd` files, those files can go here too.  
+
+### 4. A folder for presentable outputs
+
+- This is for manuscripts, slides, reports, figures and other things that will be public-facing.  
+- A common name is `reports/` (Cookiecutter uses this), but something intiuitive like `out/` also works.  
+- How you organise this folder is a matter of preference. I tend to do something like this:
+
+```
+├── out
+│   ├── interim
+|   |   ├── figures
+|   |   └── pdfs
+│   ├── ready
+|   |   ├── figures
+|   |   └── pdfs
+```
+- I tend to put the code that outputs to `out/interim/` in `explore/`, and the one that outputs to `out/ready/` in `src/`. That way all code and unrendered plaintext lives in one of those directories, and it becomes easier to maintain the maturation pipeline (from exploration to production).
+
+### 5. A folder for project documentation
+
+- This is for notes of various kinds, for example about project history, ideas, links to external resources, etc. 
+- Many call it `docs/`, but `notes/` obviously also works.
+- Write notes in Markdown. That way you can easily turn them into a browsable site with a static site generators like [mkdocs](https://www.mkdocs.org) or work with them in a note taking system like [Obsidian](https://obsidian.md) or [Foam](https://foam.md). 
+
+### 6. An archive folder
+
+This helps keep the other folders tidy by lowering the bar for moving things out. Without an archive, clutter accumulates because you are worried about deleting things. A name like `archive/` does the job.
+
+### 7. A project map
+
+Keep one or more documents that provide an overview of how the various scripts and output files interrelate. There are several ways of doing this, for example:
+
+- Diagrams. Draw one in Excalidraw or Obsidian Canvas, script one in Mermaid, or draw one by hand and have an LLM produce a digital version of it.
+- A Markdown document with lists or tables
+- YAML files. This has the advantage of being machine readable, so your scripts can load paths from them.
+
+You can automate all or parts of the mapping. If you use [make](https://makefiletutorial.com) or similar, there are utilities that can generate graphs based on the `Makefile`. These days you can also just ask an agent to parse the workspace or the Makefile and draft a diagram/list/YAML for you. 
+
+Personally I use Excalidraw diagrams and a `config.yaml` file. I put both in a `reference/` folder.
+
+If you want to be thorough, you can keep a manifest file (e.g. `MANIFEST.md`) with an overview of the file tree, a short description of each script, column names and row counts of each dataset, last-modified dates, etc. You can write a small script that generates a `MANIFEST.md` for you by reading the filesystem, fetching docstrings from script, reading the CSV files, etc. Manifest files are good for providing agents with up to date information about the status of the project. 
+
+### 8. A memory system
+
+You need a record of what was done in the project and ideally some way to restore earlier versions of files. There are several options here, and you can mix and match them according to your needs and preferences:  
+
+- Version control (Git) with meaningful commit messages.
+- A `MEMORY.md` file where agents record what whey have done.
+- A `LOG.md` file where you manually write what you have done in each session.
+- A `DECISIONS.md` file with important strategic decisisions and their rationale.
+- A todo plugin with automatic archiving, like the VSCode extension [Todo MD](https://marketplace.visualstudio.com/items?itemName=usernamehw.todo-md).
+
+If you keep several types of log files, you can gather them in a `logs/` directory. 
+
+### 9. A build tool or workflow orchestrator
+
+Use a utility such as [GNU Make](https://makefiletutorial.com) to automate and codify the build process for your outputs. Aside from saving you time by reducing multiple commands down to one, it improves reproducibility, helps you weed out bugs early, and forces you to think holistically about your project. 
+
+### 10. A record of dependencies
+
+It's important to keep track of the versions of the packages you are using so that the code becomes reproducible.
+
+For Python, I recommend keeping a `pyproject.toml` file and generating a `requirements.txt` with `uv pip compile pyproject.toml -o requirements.txt`. Fo R, the most widely used method is to use the `renv` package to create an `renv.lock` file. 
+
+### 11. A folder for artifacts such as external images, pdfs, and bib files
+
+A commonly used name for this is `assets/`. 
+
+### 12. A scratchpad
+
+It is useful to have a folder named `temp/` or `scratch/` where you (and agents) can draft or dump things. 
+
+### 13. A `README.md` for orientation
+
+This helps third parties who come to the workspace for the first time orient themselves. It also becomes the landing page on GitHub/GitLab if you push it there. You can have additional READMEs in subfolders to help future readers understand what's in them.
+
+## Optional elements
+
+- An `AGENTS.md` file. If you are using agents you will want this. 
+- A secrets file like `.env` or `.Renviron` for API keys or other sensitive information.
+- A folder for trained/finetuned models (e.g. `models/` or `assets/models`)
+- A folder for configuration files (e.g. `config/`)
+- A folder (`references/`) for explanatory materials (data dictionaries, manuals, etc).
+
+## Filename conventions
+
+There is no right way to do this either. The most important is to be consistent. If there are several of you working on the same project, document the convention.
+
+There are some conventions worth observing, such as using verbs for scripts (`process_data.py`) and nouns for data files (`output.csv`). 
+
+But the most important principle is to leverage alphabetic order:
+
+- Force custom order with file and folder prefixes like `00_`, `01_`, etc.
+- Use YYYY-MM-DD for dates in filenames to get them in chronological order. 
+- Group files by placing keywords early. For example, if you don't like: 
+```
+process_egypt_data.R
+process_syria_data.R
+visualise_egypt_data.R
+visualise_syria_data.R
+```
+Just do:
+```
+egypt_process_data.R
+egypt_visualise_data.R
+syria_process_data.R
+syria_visualise_data.R
+```
+
+## The structure I currently tend to use
+
+```
+.
+├── archive
+├── assets
+├── data
+├── docs
+├── explore
+├── logs
+├── out
+├── reference
+├── src
+└── temp
+```
+
+With subdirectories it may look like this (though it varies by project):
+```
+.
+├── archive
+├── assets
+│   ├── bib
+│   ├── images
+│   └── pdfs
+├── data
+│   ├── annotated
+│   ├── cache
+│   ├── external
+│   ├── interim
+│   ├── processed
+│   └── raw
+├── docs
+│   └── docs
+├── explore
+├── logs
+├── out
+│   └── interim
+│       ├── figures
+│       └── pdfs
+│   └── ready
+│       ├── figures
+│       └── pdfs
+├── reference
+├── src
+└── temp
+```
+
+## Articles I learned from
+
+- [PLOS Computational Biology: A Quick Guide to Organizing Computational Biology Projects](https://web.archive.org/web/20130209222835/http://www.ploscompbiol.org/article/info:doi/10.1371/journal.pcbi.1000424)
+- [My research workflow, based on Github](https://www.carlboettiger.info/2012/05/06/research-workflow.html)
+- [Designing projects - Nice R Code](https://web.archive.org/web/20260117164010/https://nicercode.github.io/blog/2013-04-05-projects/)
+- [Software Carpentry: Data / Data Management](https://web.archive.org/web/20130312015313/https://software-carpentry.org/4_0/data/mgmt.html)
+- [Organizing Your Data Science Project Files: Complete Guide](https://techietory.com/data-science/organizing-your-data-science-project-files/)
+
+
