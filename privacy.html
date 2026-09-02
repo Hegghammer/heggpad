@@ -6,10 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Thomas Hegghammer">
-<meta name="dcterms.date" content="2026-08-27">
 
-<title>TIL: vertical tabs in VSCodium – heggpad</title>
+<title>Privacy – heggpad</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -31,24 +29,24 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../../">
-<link href="../../assets/icon.svg" rel="icon" type="image/svg+xml">
-<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../../site_libs/quarto-html/popper.min.js"></script>
-<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-e3adbaa939bcd423dddc8c8a834270b4.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./assets/icon.svg" rel="icon" type="image/svg+xml">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-e3adbaa939bcd423dddc8c8a834270b4.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -87,21 +85,21 @@ if (navigator.doNotTrack !== "1") {
 </script>
 
 
-<link rel="stylesheet" href="../../assets/styles.css">
+<link rel="stylesheet" href="assets/styles.css">
 </head>
 
 <body class="nav-fixed fullcontent quarto-light">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+  <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
-    <img src="../../assets/icon.svg" alt="" class="navbar-logo light-content">
-    <img src="../../assets/icon.svg" alt="" class="navbar-logo dark-content">
+    <a href="./index.html" class="navbar-brand navbar-brand-logo">
+    <img src="./assets/icon.svg" alt="" class="navbar-logo light-content">
+    <img src="./assets/icon.svg" alt="" class="navbar-logo dark-content">
     </a>
-    <a class="navbar-brand" href="../../index.html">
+    <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">heggpad</span>
     </a>
   </div>
@@ -112,7 +110,7 @@ if (navigator.doNotTrack !== "1") {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../about.html"> 
+    <a class="nav-link" href="./about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item compact">
@@ -128,54 +126,35 @@ if (navigator.doNotTrack !== "1") {
     </nav>
 </header>
 <!-- content -->
-<header id="title-block-header" class="quarto-title-block default page-columns page-full">
-  <div class="quarto-title-banner page-columns page-full">
-    <div class="quarto-title column-body">
-      <h1 class="title">TIL: vertical tabs in VSCodium</h1>
-                                <div class="quarto-categories">
-                <div class="quarto-category">TIL</div>
-                <div class="quarto-category">vscodium</div>
-                <div class="quarto-category">text_editors</div>
-                <div class="quarto-category">tricks</div>
-              </div>
-                  </div>
-  </div>
-    
-  
-  <div class="quarto-title-meta">
-
-      <div>
-      <div class="quarto-title-meta-heading">Author</div>
-      <div class="quarto-title-meta-contents">
-               <p>Thomas Hegghammer </p>
-            </div>
-    </div>
-      
-      <div>
-      <div class="quarto-title-meta-heading">Published</div>
-      <div class="quarto-title-meta-contents">
-        <p class="date">August 27, 2026</p>
-      </div>
-    </div>
-    
-      
-    </div>
-    
-  
-  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
     
 <!-- main -->
-<main class="content quarto-banner-title-block" id="quarto-document-content">
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Privacy</h1>
+</div>
 
 
 
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
 
 
-<p>Tabs have always frustrated me in <a href="https://vscodium.com">VSCodium</a> (my go-to text editor). You want to browse a bunch of files, but each click in the file explorer creates a new tab. Exceed five or six and you can’t even see how many you have open. And pruning is fiddly.</p>
-<p>Today I discovered a simple solution: <strong><a href="https://weberdominik.com/blog/vscode-vertical-tabs">vertical tabs</a></strong>. Just open the secondary sidebar, drag the “Open Editors” element over, and you get a neat list for better overview and easier tab curation.</p>
-<p>Btw this trick also works for other things that live in the primary sidebar by default and that you would like to have easier access to. I do this also for the R extension, to get an RStudio-style pane showing workspace objects. But vertical tabs is even more useful, at least for us tab-haters.</p>
+</header>
+
+
+<p>This site uses a self-hosted instance of <a href="https://www.goatcounter.com/">GoatCounter</a> to collect aggregate visitor statistics, such as page views and referrers. GoatCounter uses no cookies, stores nothing in your browser, and does not create persistent visitor profiles.</p>
+<p>IP addresses and browser information are processed temporarily in memory but are not stored by GoatCounter. Individual page views are not retained, and browser Do Not Track requests are honoured. The analytics data is stored on my own server, although requests to the analytics service pass through Cloudflare.</p>
+<p>To opt out, enable Do Not Track in your browser before visiting the site. For further questions, contact the site administrator (email available at <a href="https://hegghammer.net/">hegghammer.net</a>).</p>
 
 
 
@@ -587,7 +566,7 @@ if (navigator.doNotTrack !== "1") {
       &nbsp;
     </div>   
     <div class="nav-footer-center">
-<p>This work is licensed under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a> · <a href="../../privacy.html">Privacy</a></p>
+<p>This work is licensed under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a> · <a href="./privacy.html">Privacy</a></p>
 </div>
     <div class="nav-footer-right">
       &nbsp;
