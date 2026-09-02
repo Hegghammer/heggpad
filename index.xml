@@ -12,6 +12,30 @@
 <generator>quarto-1.10.18</generator>
 <lastBuildDate>Wed, 02 Sep 2026 00:00:00 GMT</lastBuildDate>
 <item>
+  <title>TIL: getting Markdown into emails</title>
+  <dc:creator>Thomas Hegghammer</dc:creator>
+  <link>https://pad.hegghammer.net/posts/til-getting-markdown-into-email/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p>Today I needed to get a section from a Markdown document into an HTML email, quickly. It was a long list of URLs and I wanted them to render as hyperlinks. I use Markdown for everything, so I was slightly embarrassed to be stumped by this.</p>
+<p>The solution: <em>use your text editor’s Markdown preview functionality and just copy and paste from the preview</em>. Works both in Thunderbird and in browser based email.</p>
+<p>Yes, there are other solutions, like <a href="https://markdown-here.com">markdown-here</a> and various extensions in Thunderbird. But extensions are clutter and I prefer to do without them if I can.</p>
+
+
+
+ ]]></description>
+  <category>TIL</category>
+  <category>email</category>
+  <category>markdown</category>
+  <category>text_editors</category>
+  <guid>https://pad.hegghammer.net/posts/til-getting-markdown-into-email/</guid>
+  <pubDate>Wed, 02 Sep 2026 00:00:00 GMT</pubDate>
+</item>
+<item>
   <title>Organising data-rich projects</title>
   <dc:creator>Thomas Hegghammer</dc:creator>
   <link>https://pad.hegghammer.net/posts/organising-data-rich-projects/</link>
@@ -264,30 +288,6 @@ syria_visualise_data.R</code></pre>
   <category>text_editors</category>
   <category>tricks</category>
   <guid>https://pad.hegghammer.net/posts/til-vertical-tabs-in-vscodium/</guid>
-  <pubDate>Thu, 27 Aug 2026 00:00:00 GMT</pubDate>
-</item>
-<item>
-  <title>TIL: getting Markdown into emails</title>
-  <dc:creator>Thomas Hegghammer</dc:creator>
-  <link>https://pad.hegghammer.net/posts/til-getting-markdown-into-email/</link>
-  <description><![CDATA[ 
-
-
-
-
-
-<p>Today I needed to get a section from a Markdown document into an HTML email, quickly. It was a long list of URLs and I wanted them to render as hyperlinks. I use Markdown for everything, so I was slightly embarrassed to be stumped by this.</p>
-<p>The solution: <em>use your text editor’s Markdown preview functionality and just copy and paste from the preview</em>. Works both in Thunderbird and in browser based email.</p>
-<p>Yes, there are other solutions, like <a href="https://markdown-here.com">markdown-here</a> and various extensions in Thunderbird. But extensions are clutter and I prefer to do without them if I can.</p>
-
-
-
- ]]></description>
-  <category>TIL</category>
-  <category>email</category>
-  <category>markdown</category>
-  <category>text_editors</category>
-  <guid>https://pad.hegghammer.net/posts/til-getting-markdown-into-email/</guid>
   <pubDate>Thu, 27 Aug 2026 00:00:00 GMT</pubDate>
 </item>
 <item>
