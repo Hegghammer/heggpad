@@ -10,7 +10,33 @@
 <atom:link href="https://pad.hegghammer.net/index.xml" rel="self" type="application/rss+xml"/>
 <description>Thomas Hegghammer&#39;s scratchpad</description>
 <generator>quarto-1.10.18</generator>
-<lastBuildDate>Wed, 02 Sep 2026 00:00:00 GMT</lastBuildDate>
+<lastBuildDate>Wed, 09 Sep 2026 00:00:00 GMT</lastBuildDate>
+<item>
+  <title>TIL: emojis for organisation</title>
+  <dc:creator>Thomas Hegghammer</dc:creator>
+  <link>https://pad.hegghammer.net/posts/til-emojis-for-organisation/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p>This is not really a TIL because I knew about it. But I just thought of some new use cases, and I figured I could use the occasion to inaugurate a new <code>#deadsimple</code> tag.</p>
+<p>It’s the simple idea that emojis are Unicode, so if you keep a plaintext workflow or otherwise like to keep things simple, you can use emojis as a type of tag. For instance, most file explorers lets you create shortcuts in the left sidebar, and you can use emojis to make them more distinguishable from one another. Instead of “documents” and “photos” you can have “📄 documents” and “📷 photos”.</p>
+<p>What prompted my latest aha moment was something a bit more niche: Tasks in <a href="https://www.thunderbird.net">Thunderbird</a>. I use <a href="https://tasks.org/docs/sync_caldav/">CalDav Tasks</a> for my todo lists (so they sync easily across devices), and on PCs I manage them in Thunderbird. But Thunderbird’s task list is so minimalistic it provides no highlighting unless you use a separate calendar for every category. Then I realised I can just use emojis as tags and keep everything in one “tasks” calendar.</p>
+<p><img src="https://pad.hegghammer.net/assets/images/tb_tasks.png" class="img-fluid"></p>
+<p>It’s the same idea that powers <a href="https://community.obsidian.md/plugins/obsidian-tasks-plugin">Obsidian tasks</a>, the most widely used plaintext todo standards after <a href="https://github.github.com/gfm/#example-279">GFM tasks</a>. Instead of bothering with ASCII syntax like that of <a href="http://todotxt.org">todo.txt</a>, it just uses emojis.</p>
+<p>I am sure there are many other creative ways one can use emojis in a plaintext workflow. Just dont’t use them in file or folder names; it will complicate search and programmatic file handling.</p>
+
+
+
+ ]]></description>
+  <category>til</category>
+  <category>deadsimple</category>
+  <category>tricks</category>
+  <guid>https://pad.hegghammer.net/posts/til-emojis-for-organisation/</guid>
+  <pubDate>Wed, 09 Sep 2026 00:00:00 GMT</pubDate>
+</item>
 <item>
   <title>TIL: getting Markdown into emails</title>
   <dc:creator>Thomas Hegghammer</dc:creator>
