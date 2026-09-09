@@ -13,6 +13,6 @@ What prompted my latest aha moment was something a bit more niche: Tasks in [Thu
 
 ![](../../assets/images/tb_tasks.png)
 
-It's the same idea that powers [Obsidian tasks](https://community.obsidian.md/plugins/obsidian-tasks-plugin), the most widely used plaintext todo standards after [GFM tasks](https://github.github.com/gfm/#example-279). Instead of bothering with ASCII syntax like that of [todo.txt](http://todotxt.org), it just uses emojis.
+It's the same idea that powers [Obsidian tasks](https://community.obsidian.md/plugins/obsidian-tasks-plugin), probably the most widely used plaintext todo standard after [GFM tasks](https://github.github.com/gfm/#example-279). Instead of bothering with ASCII syntax like that of [todo.txt](http://todotxt.org), it just uses emojis.
 
 I am sure there are many other creative ways one can use emojis in a plaintext workflow. Just dont't use them in file or folder names; it will complicate search and programmatic file handling. 
