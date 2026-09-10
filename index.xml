@@ -10,7 +10,34 @@
 <atom:link href="https://pad.hegghammer.net/index.xml" rel="self" type="application/rss+xml"/>
 <description>Thomas Hegghammer&#39;s scratchpad</description>
 <generator>quarto-1.10.18</generator>
-<lastBuildDate>Wed, 09 Sep 2026 00:00:00 GMT</lastBuildDate>
+<lastBuildDate>Thu, 10 Sep 2026 00:00:00 GMT</lastBuildDate>
+<item>
+  <title>A VS Code extension in half an hour</title>
+  <dc:creator>Thomas Hegghammer</dc:creator>
+  <link>https://pad.hegghammer.net/posts/a-vscode-extension-in-half-an-hour/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p>A famous economics <a href="https://barrypopik.com/blog/if_it_were_a_real_20_bill">joke</a> poking fun at the efficient markets hypothesis ends with the senior professor refusing to acknowledge a $20 bill on the ground because “if it was there somebody would have picked it up already”. So it is with software; usually there’s no point making a new tool, because what you are looking for has likely already been built.</p>
+<p>But every once in a while, perhaps a couple of times a year, I come across a need that hasn’t been met by the efficient market of open source software. Previously I just found a suboptimal workaround and moved on. But with LLM agents I can now vibecode almost anything I want. As many have pointed out, we are in an era of almost limitless customisation.</p>
+<p>One my agents’ most useful creations recently was a VSCode extension to provide a GUI for the command-line search tool <a href="https://github.com/tobi/qmd"><code>qmd</code></a>. It is designed to provide agents with efficent search in large collections of Markdown documents and does a terrific job at that, as its nearly 30k stars on GitHub suggest. I have a lot of notes in Markdown, and I have long been unhappy with the built-in search functionality in <a href="https://vscodium.com">VSCodium</a>, my text editor of choice. So I just asked an agent to build me a VSCode extension that would provide more user-friendly search with <code>qmd</code> as the backend. It took us about half an hour, with the agent doing all the work and me just asking for tweaks in natural language. Now I have search in a VSCode sidebar that actually lets me find things. I can choose between keyword and semantic search, I can modify the format of the results, and, obviously, clicking a result opens the file in question.</p>
+<p><img src="https://pad.hegghammer.net/assets/images/qmd-search.png" class="img-fluid"></p>
+<p>If you’re a VSCode/VSCodium user you can try for yourself by downloading the <code>vsix</code> file from <a href="https://github.com/Hegghammer/qmd-search">here</a>. You will need to set up <code>qmd</code> first and index at least one collection.</p>
+<p>It’s probably a stretch to say that agents allow anyone to build anything. It helps to have some programming literacy and an understanding of the domain in which the tool is going to operate. In my case, VSCodium was a platform I was very familiar with, so I knew what tweaks I could reasonably ask the agent for. But if you have that minimum literacy, it really is a new world.</p>
+
+
+
+ ]]></description>
+  <category>agents</category>
+  <category>vscodium</category>
+  <category>search</category>
+  <category>qmd</category>
+  <guid>https://pad.hegghammer.net/posts/a-vscode-extension-in-half-an-hour/</guid>
+  <pubDate>Thu, 10 Sep 2026 00:00:00 GMT</pubDate>
+</item>
 <item>
   <title>TIL: emojis for organisation</title>
   <dc:creator>Thomas Hegghammer</dc:creator>
