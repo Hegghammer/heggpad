@@ -1,0 +1,53 @@
+---
+title: "TIL: Custom variables in Quarto"
+author: "Thomas Hegghammer"
+date: "2026-09-18"
+categories: [TIL, quarto, tricks]
+magic-number: 17
+---
+
+Today I was writing a piece of documentation in Quarto, and I wanted to define a variable for the version number somewhere central and invoke it in the text. I didn't know that you can define any custom variable in the Quarto YAML so long as they are not one of the standard Quarto ones.
+
+```md
+---
+title: My document
+format: typst
+magic-number: 17
+---
+```
+
+Then you just invoke it with this piece of Quarto syntax: 
+
+```markdown
+The magic number is {{</* meta magic-number */>}}.
+```
+
+It works in R code chunks too via the `rmarkdown` package:
+
+````markdown
+​```{r}
+magic <- rmarkdown::metadata$`magic-number`
+print(magic)
+2 * magic
+​```
+````
+
+In Python chunks it works for display, but not for evaluation:
+
+````markdown
+​```{python}
+magic = "{{</* meta magic-number */>}}"
+print(magic)
+print(f"The number is: {magic}")
+
+if magic == 17:
+    print("matched")
+else:
+    print("NOT matched")
+
+try:
+    magic = int(magic)
+except:
+    print("Doesn't work")
+​```
+````

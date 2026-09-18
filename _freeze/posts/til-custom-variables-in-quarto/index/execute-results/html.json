@@ -1,0 +1,15 @@
+{
+  "hash": "4568246ef74b5123096967457a9a4147",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"TIL: Custom variables in Quarto\"\nauthor: \"Thomas Hegghammer\"\ndate: \"2026-09-18\"\ncategories: [TIL, quarto, tricks]\nmagic-number: 17\n---\n\nToday I was writing a piece of documentation in Quarto, and I wanted to define a variable for the version number somewhere central and invoke it in the text. I didn't know that you can define any custom variable in the Quarto YAML so long as they are not one of the standard Quarto ones.\n\n```md\n---\ntitle: My document\nformat: typst\nmagic-number: 17\n---\n```\n\nThen you just invoke it with this piece of Quarto syntax: \n\n```md\nThe magic number is {{</* meta magic-number */>}}.\n```\n\nIt works in R code chunks too via the `rmarkdown` package:\n\n\n::: {.cell}\n\n```{.r .cell-code}\nmagic <- rmarkdown::metadata$`magic-number`\nprint(magic)\n2 * magic\n```\n:::\n\n\nIn Python chunks it works for display, but not for evaluation:\n\n```python\nmagic = \"{{</* meta magic-number */>}}\"\nprint(magic)\nprint(f\"The number is: {magic}\")\n\nif magic == 17:\n    print(\"matched\")\nelse:\n    print(\"NOT matched\")\n\ntry:\n    magic = int(magic)\nexcept:\n    print(\"Doesn't work\")\n```\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}
