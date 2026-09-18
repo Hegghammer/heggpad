@@ -2,6 +2,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/til-custom-variables-in-quarto/index.html",
       "/posts/a-vscode-extension-in-half-an-hour/index.html",
       "/posts/til-emojis-for-organisation/index.html",
       "/posts/til-getting-markdown-into-email/index.html",

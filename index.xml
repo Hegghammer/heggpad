@@ -10,7 +10,75 @@
 <atom:link href="https://pad.hegghammer.net/index.xml" rel="self" type="application/rss+xml"/>
 <description>Thomas Hegghammer&#39;s scratchpad</description>
 <generator>quarto-1.10.18</generator>
-<lastBuildDate>Thu, 10 Sep 2026 00:00:00 GMT</lastBuildDate>
+<lastBuildDate>Fri, 18 Sep 2026 00:00:00 GMT</lastBuildDate>
+<item>
+  <title>TIL: Custom variables in Quarto</title>
+  <dc:creator>Thomas Hegghammer</dc:creator>
+  <link>https://pad.hegghammer.net/posts/til-custom-variables-in-quarto/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p>Today I was writing a piece of documentation in Quarto, and I wanted to define a variable for the version number somewhere central and invoke it in the text. I didn’t know that you can define any custom variable in the Quarto YAML so long as they are not one of the standard Quarto ones.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode md code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">---</span></span>
+<span id="cb1-2"><span class="an" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">title:</span><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"> My document</span></span>
+<span id="cb1-3"><span class="an" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">format:</span><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"> typst</span></span>
+<span id="cb1-4"><span class="an" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">magic-number:</span><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"> 17</span></span>
+<span id="cb1-5"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">---</span></span></code></pre></div></div>
+<p>Then you just invoke it with this piece of Quarto syntax:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb2-1">The magic number is {{&lt; meta magic-number &gt;}}.</span></code></pre></div></div>
+<p>It works in R code chunks too via the <code>rmarkdown</code> package:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb3-1">​```{r}</span>
+<span id="cb3-2">magic &lt;- rmarkdown::metadata$<span class="in" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">`magic-number`</span></span>
+<span id="cb3-3">print(magic)</span>
+<span id="cb3-4">2 * magic</span>
+<span id="cb3-5">​```</span></code></pre></div></div>
+<p>In Python chunks it works for display, but not for evaluation:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb4-1">​```{python}</span>
+<span id="cb4-2">magic = "{{&lt; meta magic-number &gt;}}"</span>
+<span id="cb4-3">print(magic)</span>
+<span id="cb4-4">print(f"The number is: {magic}")</span>
+<span id="cb4-5"></span>
+<span id="cb4-6">if magic == 17:</span>
+<span id="cb4-7">    print("matched")</span>
+<span id="cb4-8">else:</span>
+<span id="cb4-9">    print("NOT matched")</span>
+<span id="cb4-10"></span>
+<span id="cb4-11">try:</span>
+<span id="cb4-12">    magic = int(magic)</span>
+<span id="cb4-13">except:</span>
+<span id="cb4-14">    print("Doesn't work")</span>
+<span id="cb4-15">​```</span></code></pre></div></div>
+
+
+
+ ]]></description>
+  <category>TIL</category>
+  <category>quarto</category>
+  <category>tricks</category>
+  <guid>https://pad.hegghammer.net/posts/til-custom-variables-in-quarto/</guid>
+  <pubDate>Fri, 18 Sep 2026 00:00:00 GMT</pubDate>
+</item>
 <item>
   <title>A VS Code extension in half an hour</title>
   <dc:creator>Thomas Hegghammer</dc:creator>

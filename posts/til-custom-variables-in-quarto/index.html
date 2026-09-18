@@ -6,8 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Thomas Hegghammer">
+<meta name="dcterms.date" content="2026-09-18">
 
-<title>heggpad</title>
+<title>TIL: Custom variables in Quarto – heggpad</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -26,29 +28,62 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./assets/icon.svg" rel="icon" type="image/svg+xml">
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-3e9b1289f5f353c49b617ce48ad2bc38.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../assets/icon.svg" rel="icon" type="image/svg+xml">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-3e9b1289f5f353c49b617ce48ad2bc38.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -77,35 +112,6 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 <script>
-
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-date','listing-title','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
-<script>
 if (navigator.doNotTrack !== "1") {
   const script = document.createElement("script");
   script.async = true;
@@ -115,51 +121,22 @@ if (navigator.doNotTrack !== "1") {
 }
 </script>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
 
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
+<link rel="stylesheet" href="../../assets/styles.css">
+</head>
 
-<link rel="stylesheet" href="assets/styles.css">
-<link rel="alternate" type="application/rss+xml" title="heggpad" href="index.xml" data-external="1"></head>
-
-<body class="nav-fixed quarto-light">
+<body class="nav-fixed fullcontent quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top quarto-banner">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="./index.html" class="navbar-brand navbar-brand-logo">
-    <img src="./assets/icon.svg" alt="" class="navbar-logo light-content">
-    <img src="./assets/icon.svg" alt="" class="navbar-logo dark-content">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../assets/icon.svg" alt="" class="navbar-logo light-content">
+    <img src="../../assets/icon.svg" alt="" class="navbar-logo dark-content">
     </a>
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">heggpad</span>
     </a>
   </div>
@@ -170,7 +147,7 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./about.html"> 
+    <a class="nav-link" href="../../about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item compact">
@@ -186,212 +163,84 @@ window.Quarto = {
     </nav>
 </header>
 <!-- content -->
-<header id="title-block-header" class="quarto-title-block"></header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">TIL: Custom variables in Quarto</h1>
+                                <div class="quarto-categories">
+                <div class="quarto-category">TIL</div>
+                <div class="quarto-category">quarto</div>
+                <div class="quarto-category">tricks</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Thomas Hegghammer </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">September 18, 2026</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
-    <h5 class="quarto-listing-category-title">Tags</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(10)</span></div><div class="category" data-category="YWdlbnRz">agents <span class="quarto-category-count">(5)</span></div><div class="category" data-category="ZGVhZHNpbXBsZQ==">deadsimple <span class="quarto-category-count">(1)</span></div><div class="category" data-category="ZW1haWw=">email <span class="quarto-category-count">(1)</span></div><div class="category" data-category="bGxtcw==">llms <span class="quarto-category-count">(4)</span></div><div class="category" data-category="bWFya2Rvd24=">markdown <span class="quarto-category-count">(1)</span></div><div class="category" data-category="b3BlbmNvZGU=">opencode <span class="quarto-category-count">(2)</span></div><div class="category" data-category="cW1k">qmd <span class="quarto-category-count">(1)</span></div><div class="category" data-category="cXVhcnRv">quarto <span class="quarto-category-count">(1)</span></div><div class="category" data-category="c2VhcmNo">search <span class="quarto-category-count">(1)</span></div><div class="category" data-category="dGV4dF9lZGl0b3Jz">text_editors <span class="quarto-category-count">(2)</span></div><div class="category" data-category="VElM">TIL <span class="quarto-category-count">(3)</span></div><div class="category" data-category="dGls">til <span class="quarto-category-count">(1)</span></div><div class="category" data-category="dHJpY2tz">tricks <span class="quarto-category-count">(3)</span></div><div class="category" data-category="dnNjb2RpdW0=">vscodium <span class="quarto-category-count">(2)</span></div><div class="category" data-category="d29ya2Zsb3c=">workflow <span class="quarto-category-count">(1)</span></div><div class="category" data-category="d3JpdGluZw==">writing <span class="quarto-category-count">(1)</span></div></div></div>
+    
 <!-- main -->
-<main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
-<div class="site-subtitle">
-  Thomas Hegghammer's scratchpad on humanities and social science computing
-</div>
-<script>
-// Keep this site-level subtitle outside the feed's page-column layout.
-const subtitle = document.currentScript.previousElementSibling;
-document.querySelector("#quarto-header")?.after(subtitle);
-document.currentScript.remove();
-</script>
+<main class="content quarto-banner-title-block" id="quarto-document-content">
 
 
 
 
 
+<p>Today I was writing a piece of documentation in Quarto, and I wanted to define a variable for the version number somewhere central and invoke it in the text. I didn’t know that you can define any custom variable in the Quarto YAML so long as they are not one of the standard Quarto ones.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode md code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> My document</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span><span class="co"> typst</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="an">magic-number:</span><span class="co"> 17</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Then you just invoke it with this piece of Quarto syntax:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>The magic number is {{&lt; meta magic-number &gt;}}.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>It works in R code chunks too via the <code>rmarkdown</code> package:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>​```{r}</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>magic &lt;- rmarkdown::metadata$<span class="in">`magic-number`</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>print(magic)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>2 * magic</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>​```</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>In Python chunks it works for display, but not for evaluation:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>​```{python}</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>magic = "{{&lt; meta magic-number &gt;}}"</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>print(magic)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>print(f"The number is: {magic}")</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>if magic == 17:</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    print("matched")</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>else:</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    print("NOT matched")</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>try:</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    magic = int(magic)</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>except:</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    print("Doesn't work")</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>​```</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
 
 
-<div class="quarto-listing quarto-listing-container-table" id="listing-listing">
-<table class="quarto-listing-table table">
-<thead>
-<tr>
-
-<th>
-Date
-</th>
-
-<th>
-Title
-</th>
-
-<th>
-Tags
-</th>
-
-</tr>
-</thead>
-<tbody class="list">
-
-<tr data-index="0" data-categories="VElMJTJDcXVhcnRvJTJDdHJpY2tz" data-listing-date-sort="1789689600000" data-listing-file-modified-sort="1789733765690" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="132" data-listing-title-sort="TIL: Custom variables in Quarto" data-listing-filename-sort="index.qmd">
-<td>
-<span class="listing-date">2026-09-18</span>
-</td>
-<td>
-<a href="./posts/til-custom-variables-in-quarto/index.html" class="title listing-title">TIL: Custom variables in Quarto</a>
-</td>
-<td>
-<span class="listing-categories">TIL, quarto, tricks</span>
-</td>
-
-</tr>
-
-<tr data-index="1" data-categories="YWdlbnRzJTJDdnNjb2RpdW0lMkNzZWFyY2glMkNxbWQ=" data-listing-date-sort="1788998400000" data-listing-file-modified-sort="1789733765689" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="390" data-listing-title-sort="A VS Code extension in half an hour" data-listing-filename-sort="index.qmd">
-<td>
-<span class="listing-date">2026-09-10</span>
-</td>
-<td>
-<a href="./posts/a-vscode-extension-in-half-an-hour/index.html" class="title listing-title">A VS Code extension in half an hour</a>
-</td>
-<td>
-<span class="listing-categories">agents, vscodium, search, qmd</span>
-</td>
-
-</tr>
-
-<tr data-index="2" data-categories="dGlsJTJDZGVhZHNpbXBsZSUyQ3RyaWNrcw==" data-listing-date-sort="1788912000000" data-listing-file-modified-sort="1789733765690" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="243" data-listing-title-sort="TIL: emojis for organisation" data-listing-filename-sort="index.qmd">
-<td>
-<span class="listing-date">2026-09-09</span>
-</td>
-<td>
-<a href="./posts/til-emojis-for-organisation/index.html" class="title listing-title">TIL: emojis for organisation</a>
-</td>
-<td>
-<span class="listing-categories">til, deadsimple, tricks</span>
-</td>
-
-</tr>
-
-<tr data-index="3" data-categories="VElMJTJDZW1haWwlMkNtYXJrZG93biUyQ3RleHRfZWRpdG9ycw==" data-listing-date-sort="1788307200000" data-listing-file-modified-sort="1789733765690" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="96" data-listing-title-sort="TIL: getting Markdown into emails" data-listing-filename-sort="index.qmd">
-<td>
-<span class="listing-date">2026-09-02</span>
-</td>
-<td>
-<a href="./posts/til-getting-markdown-into-email/index.html" class="title listing-title">TIL: getting Markdown into emails</a>
-</td>
-<td>
-<span class="listing-categories">TIL, email, markdown, text_editors</span>
-</td>
-
-</tr>
-
-<tr data-index="4" data-categories="d3JpdGluZyUyQ3dvcmtmbG93" data-listing-date-sort="1788307200000" data-listing-file-modified-sort="1789733765690" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="10" data-listing-word-count-sort="1829" data-listing-title-sort="Organising data-rich projects" data-listing-filename-sort="index.qmd">
-<td>
-<span class="listing-date">2026-09-02</span>
-</td>
-<td>
-<a href="./posts/organising-data-rich-projects/index.html" class="title listing-title">Organising data-rich projects</a>
-</td>
-<td>
-<span class="listing-categories">writing, workflow</span>
-</td>
-
-</tr>
-
-<tr data-index="5" data-categories="VElMJTJDdnNjb2RpdW0lMkN0ZXh0X2VkaXRvcnMlMkN0cmlja3M=" data-listing-date-sort="1787788800000" data-listing-file-modified-sort="1789733765690" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="133" data-listing-title-sort="TIL: vertical tabs in VSCodium" data-listing-filename-sort="index.qmd">
-<td>
-<span class="listing-date">2026-08-27</span>
-</td>
-<td>
-<a href="./posts/til-vertical-tabs-in-vscodium/index.html" class="title listing-title">TIL: vertical tabs in VSCodium</a>
-</td>
-<td>
-<span class="listing-categories">TIL, vscodium, text_editors, tricks</span>
-</td>
-
-</tr>
-
-<tr data-index="6" data-categories="bGxtcyUyQ2FnZW50cw==" data-listing-date-sort="1787356800000" data-listing-file-modified-sort="1789733765690" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1185" data-listing-title-sort="My AGENTS.md" data-listing-filename-sort="index.qmd">
-<td>
-<span class="listing-date">2026-08-22</span>
-</td>
-<td>
-<a href="./posts/my-agents-md/index.html" class="title listing-title">My AGENTS.md</a>
-</td>
-<td>
-<span class="listing-categories">llms, agents</span>
-</td>
-
-</tr>
-
-<tr data-index="7" data-categories="bGxtcyUyQ2FnZW50cw==" data-listing-date-sort="1787184000000" data-listing-file-modified-sort="1789733765690" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1048" data-listing-title-sort="My emerging LLM workflow" data-listing-filename-sort="index.qmd">
-<td>
-<span class="listing-date">2026-08-20</span>
-</td>
-<td>
-<a href="./posts/my-emerging-llm-workflow/index.html" class="title listing-title">My emerging LLM workflow</a>
-</td>
-<td>
-<span class="listing-categories">llms, agents</span>
-</td>
-
-</tr>
-
-<tr data-index="8" data-categories="b3BlbmNvZGUlMkNhZ2VudHMlMkNsbG1z" data-listing-date-sort="1786924800000" data-listing-file-modified-sort="1789733765689" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="748" data-listing-title-sort="Getting set up with OpenCode and TensorX models" data-listing-filename-sort="index.qmd">
-<td>
-<span class="listing-date">2026-08-17</span>
-</td>
-<td>
-<a href="./posts/getting-set-up-with-opencode-and-tensorx-models/index.html" class="title listing-title">Getting set up with OpenCode and TensorX models</a>
-</td>
-<td>
-<span class="listing-categories">opencode, agents, llms</span>
-</td>
-
-</tr>
-
-<tr data-index="9" data-categories="bGxtcyUyQ2FnZW50cyUyQ29wZW5jb2Rl" data-listing-date-sort="1786752000000" data-listing-file-modified-sort="1789733765689" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="929" data-listing-title-sort="A reasonably private agentic LLM stack" data-listing-filename-sort="index.qmd">
-<td>
-<span class="listing-date">2026-08-15</span>
-</td>
-<td>
-<a href="./posts/a-reasonably-private-agentic-llm-stack/index.html" class="title listing-title">A reasonably private agentic LLM stack</a>
-</td>
-<td>
-<span class="listing-categories">llms, agents, opencode</span>
-</td>
-
-</tr>
-
-</tbody>
-</table>
-<div class="listing-no-matching d-none">No matching items</div>
-</div></main> <!-- /main -->
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-  document.querySelectorAll(".quarto-listing-table .listing-categories").forEach((container) => {
-    const encodedCategories = container.closest("tr")?.dataset.categories;
-    if (!encodedCategories) return;
-
-    // Use Quarto's row metadata so each link matches its built-in category filter exactly.
-    const categories = decodeURIComponent(atob(encodedCategories)).split(",");
-    container.replaceChildren();
-
-    categories.forEach((category, index) => {
-      if (index > 0) container.append(", ");
-
-      const link = document.createElement("a");
-      link.className = "listing-category-link";
-      link.href = `#category=${encodeURIComponent(category)}`;
-      link.textContent = category;
-      link.addEventListener("click", (event) => {
-        event.preventDefault();
-        window.quartoListingCategory(btoa(encodeURIComponent(category)));
-      });
-      container.append(link);
-    });
-  });
-});
-</script>
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
@@ -799,7 +648,7 @@ document.addEventListener("DOMContentLoaded", () => {
       &nbsp;
     </div>   
     <div class="nav-footer-center">
-<p>This work is licensed under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a> · <a href="./privacy.html">Privacy</a></p>
+<p>This work is licensed under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a> · <a href="../../privacy.html">Privacy</a></p>
 </div>
     <div class="nav-footer-right">
       &nbsp;
