@@ -9,7 +9,7 @@
 <link>https://pad.hegghammer.net/</link>
 <atom:link href="https://pad.hegghammer.net/index.xml" rel="self" type="application/rss+xml"/>
 <description>Thomas Hegghammer&#39;s scratchpad</description>
-<generator>quarto-1.10.18</generator>
+<generator>quarto-1.10.19</generator>
 <lastBuildDate>Fri, 18 Sep 2026 00:00:00 GMT</lastBuildDate>
 <item>
   <title>TIL: Custom variables in Quarto</title>
@@ -460,6 +460,38 @@ syria_visualise_data.R</code></pre>
   <category>llms</category>
   <category>agents</category>
   <guid>https://pad.hegghammer.net/posts/my-agents-md/</guid>
+  <pubDate>Sat, 22 Aug 2026 00:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>Are local LLMs worth it?</title>
+  <dc:creator>Thomas Hegghammer</dc:creator>
+  <link>https://pad.hegghammer.net/posts/are-local-llms-worth-it/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p>Ever since large language models (LLMs) became a thing in 2022-2023, there has been talk of a future in which we can all run models locally on our own desktops or laptops, thereby avoiding the costs and privacy risks that come with using flagship products such as ChatGPT or Claude. A whole <a href="https://www.reddit.com/r/LocalLLaMA/">community</a> of so-called “localmaxxers” (not to be confused with that word’s <a href="https://www.urbandictionary.com/define.php?term=Localmaxxing">original</a> meaning) has emerged, one that experiments with open-source models small enough to fit on consumer hardware and tries to squeeze out as much performance as possible from them.</p>
+<p>For a tinkering academic like myself, this was a tantalising prospect, because it promised to lower cost, provide safe processing of sensitive materials (like jihadi propaganda, in my case), and allow for deployment of fine-tuned models for specialised tasks. I have therefore been following developments in this domain quite closely and I have experimented more than I have dared tell my wife. In 2024 I even spent £1,500 on two used Nvidia RTX 3090 GPUs to get 48GB of VRAM to play around with.</p>
+<p>Two years in, I have to admit that the whole effort has been a bit of a failure. Not because the models I deployed locally couldn’t do cool things, but because the larger models available from data centres were always much further ahead. Indeed, the gap only increased with the advent of agentic AI in late 2025, when a model’s ability to use tools became crucial. Many weak models struggled with this and became almost unusable in agentic settings.</p>
+<p>Today, the strongest model I can run on my two GPUs at a decent speed (50+ tokens per second) is <code>qwen-3.8-27b</code>. It works in self-hosted chat interfaces like <a href="https://openwebui.com">Open WebUI</a> and agentic harnesses like <a href="https://opencode.ai">OpenCode</a> and is generally pretty good. Indeed, it is stronger than any ChatGPT model from before 2025, and it can probably perform 70 per cent of the tasks I use agents for. But it’s slow (takes around 30 seconds to cold start), and I don’t always know whether the task at hand is one that it can handle or not. That very uncertainty is enough to make me hesitant to use it for high-stakes tasks under time pressure. Of course, I could invest in more compute, but to get north of 48GB VRAM, I would be looking at several thousand pounds in extra hardware.</p>
+<p>That investment might have been worth it if it hadn’t been for a new development in 2025-2026: the rise of independent data centre providers (so-called neoclouds) offering inference on very powerful open-source models. The models they serve – such as GLM-5.3 and Kimi K3 – are much too big to ever run on consumer hardware. You could create your own little data centre to run them, but it would cost you of the order of £30,000 to £40,000. These models are really powerful and only lag behind the flagship models by about 3-6 months. Given that the capabilities of the flagship models are now overkill for most people’s daily tasks, the large open-source models are really attractive, not least because they cost 1/10th to 1/20th of the commercial flagship models. A model like <code>deepseek-4.1-flash-1017</code>, for instance – the one I currently use for almost everything – now <a href="https://artificialanalysis.ai/#intelligence-efficiency-tabs">costs</a> $0.26 per task whereas Claude Fable costs $7.63 (about 30 times as much).</p>
+<p>Privacy-wise, these large open-source models are actually much better than ChatGPT and Claude, so long as you use the right inference provider. There are now European companies such as <a href="https://tensorx.ai">TensorX</a> that offer inference with Zero Data Retention and GDPR compliance, which means that your chats are never stored and certainly not trained on. It is not as secure as a model on local infrastructure, which will work even with your internet connection turned off, but as digital services go, it is about as private as it gets. It is certainly a lot better than using LLMs through OpenAI and Anthropic (to say nothing of the Chinese labs), who openly say that they retain your data and train on it. Personally I trust TensorX-served models to process my most sensitive data, such as my taxes, my emails, and my diary.</p>
+<p>I now almost never use my local <code>qwen-3.8-27b</code>, except for token-heavy, relatively simple tasks that I know it will not fail on. For example, I will regularly have it plough through my personal notes archive (3,000 markdown files) to weed out formatting errors and broken links. But for everything else, I turn to an open-source model from TensorX. And if that model struggles, I escalate to a flagship OpenAI model, but that is increasingly rare.</p>
+<p>The whole experience has made me realise that, while there certainly is a place for local models, society as a whole is much better off pursuing <em>collective solutions</em> in the form of privacy-friendly inference providers that can serve powerful open-source models. The principle of economies of scale makes this fairly obvious. If private inference is only to be had on local infrastructure, it is going to be reserved for the rich, because it is very expensive to buy the hardware needed to run a decent LLM.</p>
+<p>There is a clear analogy here to things like solar panels. Due to the fixed per-unit installation costs, it is much more efficient to build large solar farms than to put solar panels on individual houses. I haven’t seen data on the socioeconomic profiles of people with solar panels on their house roofs, but I’ll be damned if it isn’t overwhelmingly upper-middle-class families. (My neighbourhood in north Oxford has a lot of them.)</p>
+<p>I’ve also come to realise that there are interested parties fishing in these waters, namely, the companies selling hardware for local inference. Apple’s Mac mini, Nvidia’s DGX Spark, AMD’s Strix Halo processor: these are all marketed to people pursuing the dream of the local model.</p>
+<p>Maybe there will come a time when our AI needs can be met with models on local hardware. But that time is not now. In the meantime, we should promote collective solutions in the form of private inference from large, efficient data centres.</p>
+
+
+
+ ]]></description>
+  <category>llms</category>
+  <category>agents</category>
+  <category>local-inference</category>
+  <category>homelab</category>
+  <guid>https://pad.hegghammer.net/posts/are-local-llms-worth-it/</guid>
   <pubDate>Sat, 22 Aug 2026 00:00:00 GMT</pubDate>
 </item>
 <item>
