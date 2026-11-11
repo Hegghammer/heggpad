@@ -9,8 +9,49 @@
 <link>https://pad.hegghammer.net/</link>
 <atom:link href="https://pad.hegghammer.net/index.xml" rel="self" type="application/rss+xml"/>
 <description>Thomas Hegghammer&#39;s scratchpad</description>
-<generator>quarto-1.10.19</generator>
-<lastBuildDate>Wed, 21 Oct 2026 00:00:00 GMT</lastBuildDate>
+<generator>quarto-1.11.9</generator>
+<lastBuildDate>Tue, 10 Nov 2026 00:00:00 GMT</lastBuildDate>
+<item>
+  <title>Offline HTML for human validation</title>
+  <dc:creator>Thomas Hegghammer</dc:creator>
+  <link>https://pad.hegghammer.net/posts/offline-html-for-human-validation/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p>Large language models (LLMs) are becoming more and more like Swiss Army knives of natural language processing (NLP). Where we previously needed specialised machine learning models for each task – one for named entity recognition, another for sentiment analysis, yet another for classification, and so forth – we are moving toward a world where a single LLM can do almost all of the above. Yes, there are still issues with reproducibility (given that LLMs sample from the next-token distribution instead of decoding greedily), and yes, accuracy may still trail specialised models fine-tuned for your task. But for a lot of scenarios – especially exploration – it is good enough, and the convenience is hard to beat. No wonder that an increasing proportion of papers that I review have some LLM-based NLP component.</p>
+<p>As we embrace the convenience, it is incumbent on us as academics not to blindly trust LLM output. We must uphold standards of quality control, and as a general rule we should do human validation whenever we use LLMs to generate or process data, especially in published work. Human validation is incredibly useful; aside from helping you detect biases in machine-generated output, it keeps you in touch with the primary sources. It also sensitises you to human biases; more than once I have seen human annotations trail the LLM ones in accuracy and be quite inconsistent across annotators.</p>
+<p>But how to do it in practice? Concrete examples are surprisingly hard to come by, as published work often speaks of validation in the abstract without going into detail about how exactly it was done. Part of the problem is that every situation is different depending on the data and task at hand. Another challenge is that there are usually multiple ways of achieving the same result; in many cases you can use anything from simple text files through spreadsheets to specialised validation software.</p>
+<p>In general, you want a solution that is simple and human-friendly, because the people doing the annotation are not necessarily that computer-savvy. At the same time, you want the annotations to be captured reliably and in a machine-readable format. Often there’s a tension between the two; the more familiar the interface (e.g.&nbsp;a Word document), the less machine-readable the output.</p>
+<p>Recently, my solution has been to use a coding agent to create <em>offline web pages</em> for human annotation. I just ask my coding agent to create an annotation kit centred around an HTML document that the annotator can open in his or her browser. This offline web page will have a button to export the annotations to a CSV or JSON file that machines can easily read. I then send the HTML file to the annotator, and the annotator returns the CSV or JSON file.</p>
+<p>Here’s a specific example. I am working on a project where we try to identify ideal-type motivations in first-person statements by Western jihadis. We have raw text from interviews, autobiographies, and the like, and we pass chunks of first-person speech to an LLM, asking it to assign intensity values from 0 to 100 for each of 12 ideal-type motivations. We get plausible values, but we want to know how they compare to human interpretation of the same chunks. I asked my agent running <code>deepseek-4.1-flash-1017</code> (my favourite LLM at the moment) to create an offline webpage for human validation. Here is what it produced:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://pad.hegghammer.net/assets/images/validation.png" class="img-fluid figure-img"></p>
+<figcaption>Screenshot of offline annotation page.</figcaption>
+</figure>
+</div>
+<p>It is hard to imagine a more intuitive and human-friendly annotation interface than this. The annotator just fills in the numbers, presses the blue button in the top right, and emails me the CSV.</p>
+<p>Here is a sample prompt you can use as a starting point:</p>
+<pre><code>Build a human-validation kit for an LLM coding task in this repo. 
+Sample &lt;X&gt; items from &lt;data Y&gt;. Categories are in &lt;typology file Z&gt;. 
+Deliver a self-contained HTML file that opens offline, 
+shows one item per screen with each category's definition beside its score box,
+autosaves, and exports a CSV whose column names join onto the model scores.</code></pre>
+<p>No more manually constructed spreadsheets, no more idiosyncratic annotation software, no more cleaning up of output files. Just a simple, intuitive web form that anyone can understand and that gives clean output. In other words: no excuse for not validating our LLM output.</p>
+
+
+
+ ]]></description>
+  <category>llms</category>
+  <category>agents</category>
+  <category>nlp</category>
+  <category>reproducibility</category>
+  <guid>https://pad.hegghammer.net/posts/offline-html-for-human-validation/</guid>
+  <pubDate>Tue, 10 Nov 2026 00:00:00 GMT</pubDate>
+</item>
 <item>
   <title>Are local LLMs worth it?</title>
   <dc:creator>Thomas Hegghammer</dc:creator>
@@ -163,30 +204,6 @@ font-style: inherit;">`magic-number`</span></span>
   <category>tricks</category>
   <guid>https://pad.hegghammer.net/posts/til-emojis-for-organisation/</guid>
   <pubDate>Wed, 09 Sep 2026 00:00:00 GMT</pubDate>
-</item>
-<item>
-  <title>TIL: getting Markdown into emails</title>
-  <dc:creator>Thomas Hegghammer</dc:creator>
-  <link>https://pad.hegghammer.net/posts/til-getting-markdown-into-email/</link>
-  <description><![CDATA[ 
-
-
-
-
-
-<p>Today I needed to get a section from a Markdown document into an HTML email, quickly. It was a long list of URLs and I wanted them to render as hyperlinks. I use Markdown for everything, so I was slightly embarrassed to be stumped by this.</p>
-<p>The solution: <em>use your text editor’s Markdown preview functionality and just copy and paste from the preview</em>. Works both in Thunderbird and in browser based email.</p>
-<p>Yes, there are other solutions, like <a href="https://markdown-here.com">markdown-here</a> and various extensions in Thunderbird. But extensions are clutter and I prefer to do without them if I can.</p>
-
-
-
- ]]></description>
-  <category>TIL</category>
-  <category>email</category>
-  <category>markdown</category>
-  <category>text_editors</category>
-  <guid>https://pad.hegghammer.net/posts/til-getting-markdown-into-email/</guid>
-  <pubDate>Wed, 02 Sep 2026 00:00:00 GMT</pubDate>
 </item>
 <item>
   <title>Organising data-rich projects</title>
@@ -417,6 +434,30 @@ syria_visualise_data.R</code></pre>
   <category>writing</category>
   <category>workflow</category>
   <guid>https://pad.hegghammer.net/posts/organising-data-rich-projects/</guid>
+  <pubDate>Wed, 02 Sep 2026 00:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>TIL: getting Markdown into emails</title>
+  <dc:creator>Thomas Hegghammer</dc:creator>
+  <link>https://pad.hegghammer.net/posts/til-getting-markdown-into-email/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p>Today I needed to get a section from a Markdown document into an HTML email, quickly. It was a long list of URLs and I wanted them to render as hyperlinks. I use Markdown for everything, so I was slightly embarrassed to be stumped by this.</p>
+<p>The solution: <em>use your text editor’s Markdown preview functionality and just copy and paste from the preview</em>. Works both in Thunderbird and in browser based email.</p>
+<p>Yes, there are other solutions, like <a href="https://markdown-here.com">markdown-here</a> and various extensions in Thunderbird. But extensions are clutter and I prefer to do without them if I can.</p>
+
+
+
+ ]]></description>
+  <category>TIL</category>
+  <category>email</category>
+  <category>markdown</category>
+  <category>text_editors</category>
+  <guid>https://pad.hegghammer.net/posts/til-getting-markdown-into-email/</guid>
   <pubDate>Wed, 02 Sep 2026 00:00:00 GMT</pubDate>
 </item>
 <item>
